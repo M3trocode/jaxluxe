@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Create Account</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="assets/images/intro/icon.png" rel="icon">
+    <!-- StyleSheet-->
+    
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/css/boxicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap-login-form.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/login.css' %}">
+</head>
+
+   
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <div class="logo">
+   
+       
+       <a href="index.html"><img src="{% static 'assets/images/Landscape logo.svg' %}" alt="#" class="img-fluid"></a>
+      </div>
+
+      
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- Login Form -->                    
+  
+  <body>
+    <!-- Start your project here-->
+  
+    <style>
+      .divider:after,
+      .divider:before {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: #eee;
+      }
+      .error {
+        color: red;
+      
+      }
+    </style>
+    <section class="vh-100">
+      <div class="container py-5 h-100">
+        <div class="row d-flex align-items-center justify-content-center h-100">
+          <div class="col-md-8 col-lg-7 col-xl-6">
+            <img src="{% static 'assets/images/signup.png' %}" class="img-fluid" alt="Jax Luxe">
+          </div>
+          <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+            <form action="#" method="post">
+
+              <!-- Fullnmae -->
+              <!--add any id format you want, it's not added yet-->
+
+                 <div class="form-outline mb-4">
+                   <input type="text" placeholder="" name="uname" required=""  class="form-control form-control-lg" />
+                    <label class="form-label" for="form1Example13">Full Name</label>
+                  </div>
+                
+              
+              
+              <!-- Username -->
+
+               <div class="form-outline mb-4">
+                <input type="text" placeholder="" name="uname" required="" pattern="^[a-zA-Z][a-zA-Z0-9]{5,}$" title="Username must start with a letter and have at least 6 characters (letters or numbers)" class="form-control form-control-lg" />
+                <label class="form-label" for="form1Example13">Username</label>
+              </div>
+  
+              <!-- Email input -->
+              <div class="form-outline mb-4">
+                <input type="email" placeholder="" name="email" required=""  class="form-control form-control-lg" />
+                <label class="form-label" for="form1Example13">Email Address</label>
+              </div>
+  
+              <!-- Password input -->
+              <div class="form-outline mb-4">
+                <input type="password" placeholder="" name="pass1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Password must contain at least one number, one lowercase and one uppercase letter, and at least 8 or more characters" required="" class="form-control form-control-lg" />
+                <span class="error" id="errorMessage"></span>
+                <label class="form-label" for="form1Example23">Password</label>
+              </div>
+  
+              <div class="d-flex justify-content-around align-items-center mb-4">
+                <!-- Checkbox -->
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                   required
+                    
+                    checked
+                  />
+                  <label class="form-check-label" required> I agree to the  <a href="terms.html">Terms and Conditions</a></label>
+                </div>
+               
+              </div>
+  
+              <!-- Submit button -->
+              <button type="submit" value="Submit" class="btn btn-primary btn-lg btn-block">Sign Up</button>
+  
+              <div class="divider d-flex align-items-center my-4">
+                <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
+
+              </div>
+  
+  
+
+              <a class="btn btn-primary btn-lg btn-block" style="background-color: #dd4b39" href="#!" role="button">
+                <i class="fab fa-facebook-f me-2"></i>Sign Up with Gmail
+              </a>
+              <div class="divider d-flex align-items-center my-4">
+                <p class="text-center fw-bold mx-3 mb-0 text-muted">Already have an account?</p>
+              </div>
+
+              <a class="btn btn-primary btn-lg btn-block" style="background-color: rgb(123, 121, 121)" href="login.html" role="button">
+                <i class="fab fa-facebook-f me-2"></i>Login
+              </a>
+              
+            </form>
+           
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End your project here-->
+
+   
+
+  
+    <script type="text/javascript" src="{% static 'assets/js/mdb.min.js' %}"></script>
+    <!-- Custom scripts -->
+ 
+
+
+  </body>
+
+  
+
+
+   <!-- Login End -->
+
+
+
+</html>

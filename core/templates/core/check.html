@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="assets/images/intro/icon.png" rel="icon">
+    <title>Checkout</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: whitesmoke;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #loading-container {
+            text-align: center;
+            color: #fff;
+        }
+
+        #loading-logo {
+            width: 300px; /* Adjust the size to fit your logo */
+            height: auto;
+        }
+
+        #loading-text {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+
+        #loading-animation {
+            font-size: 36px;
+            margin-top: 20px;
+            width: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="loading-container">
+        <img id="loading-logo" src="{% static 'assets/images/Landscape logo.png' %}" alt="Company Logo">
+        
+    </div>
+
+    <script>
+        // Simulate a delay for loading (you can adjust this value)
+        setTimeout(function() {
+            // Redirect to "check.html"
+            window.location.href = "checkout.html";
+        }, 3000); // 3000 milliseconds (3 seconds) delay
+    </script>
+</body>
+</html>
