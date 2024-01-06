@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>404 Error</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="assets/images/intro/icon.png" rel="icon">
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      outline: 0;
+      color: #444;
+      box-sizing: border-box;
+      font-family: 'IBM Plex Sans', sans-serif;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 5vw; /* Responsive font size */
+      line-height: 1.2;
+    }
+
+    span {
+      font-size: 4vw; /* Responsive font size */
+      line-height: 1.5;
+    }
+
+    .container {
+      width: 90%; /* Adjust as needed for responsiveness */
+      max-width: 1200px; /* Maximum width for content */
+      margin: auto;
+      padding: 20px; /* Add some padding for spacing */
+      text-align: center;
+    }
+
+    .grid-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px; /* Adjust spacing between columns */
+    }
+
+    .column {
+      text-align: center;
+    }
+
+    .px-spc-b-20 {
+      padding-bottom: 20px;
+    }
+
+    button.go-home {
+      padding: 10px 30px; /* Increase padding for larger screens */
+      background: #CEAE67;
+      border: transparent;
+      border-radius: 2px;
+      box-shadow: 0 0 2px rgb(0 0 0 / 30%);
+      cursor: pointer;
+      margin: 20px 0;
+      color: #fff;
+      font-size: 2vw; /* Responsive font size */
+    }
+
+    button.go-home i {
+      color: #fff;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      max-width: 100%; /* Ensure images don't exceed their container */
+    }
+
+    @media screen and (min-width: 768px) {
+      /* Apply styles for screens with a width of 768px or larger */
+      .grid-row {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .column {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="container">
+      <div class="grid-row">
+        <div class="column">
+          <h1 class="px-spc-b-20">We can't find the page you are looking for.</h1>
+
+          <button class="go-home" onclick="goToHomePage()"><i class="fa fa-home"></i> Go Home 🏠</button>
+        </div>
+        <div class="column">
+          <img src="assets/images/intro/404..png" alt="Jax Luxe">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function goToHomePage() {
+      // Redirect to index.html
+      window.location.href = "index.html";
+    }
+  </script>
+
+</body>
+</html>

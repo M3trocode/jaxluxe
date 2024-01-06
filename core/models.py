@@ -1,24 +1,38 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.core.mail import send_mail
+import uuid
 
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     full_name = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
     
-    
     def __str__(self):
         return self.full_name
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=100,)
+    description = models.TextField(blank=True)
     
+    class Meta:
+        verbose_name_plural = "Categories"
+    
+    def __str__(self):
+        return self.name
+
+
 class Product(models.Model):
     name = models.CharField(max_length=255)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     quantity = models.PositiveIntegerField()
     digital = models.BooleanField()
     image = models.ImageField(null=True, blank=True)
-
+    in_cart = models.BooleanField(default=False)
+    
     def __str__(self):
         return self.name
     
@@ -28,37 +42,99 @@ class Product(models.Model):
             url = self.image.url
         except:
             url = ''
-            return url    
-        
-class Order(models.Model):
-        customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-        #products = models.ManyToManyField( through='OrderItem')
-        total_amount = models.DecimalField(max_digits=10, decimal_places=2)
-        transaction_id = models.DateTimeField(auto_now_add=True)
+        return url
 
-        def __str__(self):
-            return str(self.id)
-        @property
-        def get_cart_total(self):
-            orderitems = self.order.orderitem_set.all()
-            total =  sum([item.get_total for item in orderitems])
-            return total
-        @property
-        def get_cart_total(self):
-            orderitems = self.order.orderitem_set.all()
-            total =  sum([item.quantity for item in orderitems])
-            return total
+
+class CartItem(models.Model):
+    product_name = models.CharField(max_length=255)
+    quantity = models.IntegerField(default=1)
+
 
 class OrderItem(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    order = models.ForeignKey('Order', on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField(default=1, null=True)
-    date_added = models.DateTimeField(auto_now_add=True)
-    
+    quantity = models.PositiveIntegerField(default=1)
+    total_price = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+
+    def save(self, *args, **kwargs):
+        # Override save method to update total_price before saving
+        self.update_total_price()
+        super().save(*args, **kwargs)
+
+        # Send email notification
+        send_mail(
+            'New Order Notification',
+            'A new order has been made.',
+            'temiloluwaogunniyi@gmail.com',  # Sender's email
+            ['creativemonsterr@gmail.com'],  # Recipient's email
+            fail_silently=False,
+        )
+
+        # Add your additional notification logic here if needed
+        print('A new order item has been added:', self.id)
+
+    def update_total_price(self):
+        # Calculate the total price for the item based on the product price and quantity
+        self.total_price = self.product.price * self.quantity
+
     @property
     def get_total(self):
-        total = self.product.price * self.quantity
+        total = self.total_price
         return total
+
+    def __str__(self):
+        return f"{self.quantity} x {self.product.name}"
+
+
+class Order(models.Model):
+    order_id = models.CharField(max_length=36, blank=True, null=True)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    is_ordered = models.BooleanField(default=False)
+    items = models.ManyToManyField(Product, through=OrderItem)
+
+    def update_total_amount(self):
+        # Calculate the total amount based on items in the order
+        items = self.items.all()
+        total_amount = sum(item.product.price * item.quantity for item in items)
+        self.total_amount = total_amount
+        self.save()
+
+    def __str__(self):
+        return str(self.id)
+
+    @property
+    def get_cart_total(self):
+        order_items = self.order_items.all()
+        total = sum([item.get_total for item in order_items])
+        return total
+
+    @property
+    def get_cart_quantity(self):
+        order_items = self.order_items.all()
+        quantity = sum([item.quantity for item in order_items])
+        return quantity
+
+    def save(self, *args, **kwargs):
+        # Save the order
+        super().save(*args, **kwargs)
+
+        # Send email notification
+        send_mail(
+            'New Order Notification',
+            'A new order has been made.',
+            'temiloluwaogunniyi@gmail.com',  # Sender's email
+            ['creativemonsterr@gmail.com'],  # Recipient's email
+            fail_silently=False,
+        )
+
+        # Add your additional notification logic here if needed
+        print('A new order has been made:', self.id)
+
+
+def generate_order_id():
+    # Generate a unique order_id using the uuid module
+    return str(uuid.uuid4())
+
 
 class Shipping(models.Model):
     address = models.CharField(max_length=255)
@@ -68,5 +144,4 @@ class Shipping(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.address          
-    
+        return self.address

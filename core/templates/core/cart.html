@@ -156,7 +156,7 @@
 									<li class="checkout">
 										<a href="cart.html">
 											<i class="fa fa-shopping-cart" aria-hidden="true"></i>
-											<span id="checkout_items" class="checkout_items">2</span>
+											<span id="checkout_items" class="checkout_items">{{ request.session.cart_data_obj|length }}</span>
 										</a>
 									</li>
 								</ul>
@@ -187,7 +187,7 @@
 				<li class="menu_item"><a href="#">Blog</a></li>
 				<li class="menu_item"><a href="#">Helpline</a></li>
 				<li class="menu_item has-children">
-					<a href="#">
+					<a href="">
 						My Account
 						<i class="fa fa-angle-down"></i>
 					</a>
@@ -201,131 +201,60 @@
 	</div>
 
 	
-	<div class="pb-5">
-       
-		<div class="container">
-			{% for item in items  %}
-		  <div class="row">
-			<div class="col-lg-12 p-5 bg-white rounded shadow-sm mb-5">
-	
-                    <!-- Shopping cart table -->
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col" class="border-0 bg-light">
-                                        <div class="p-2 px-3 text-uppercase">Product</div>
-                                    </th>
-                                    <th scope="col" class="border-0 bg-light">
-                                        <div class="py-2 text-uppercase">Price</div>
-                                    </th>
-                                    <th scope="col" class="border-0 bg-light">
-                                        <div class="py-2 text-uppercase">Quantity</div>
-                                    </th>
-                                    <th scope="col" class="border-0 bg-light">
-                                        <div class="py-2 text-uppercase">Remove</div>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row" class="border-0">
-                                        <div class="p-2">
-                                            <img src="{{item.product.image.url}}"
-                                                alt="" width="70"
-                                                class="img-fluid rounded shadow-sm">
-                                            <div class="ml-3 d-inline-block align-middle">
-                                                <h5 class="mb-0"> <a href="#"
-                                                        class="text-dark d-inline-block align-middle">{{item.product.name}}</a></h5><span
-                                                    class="text-muted font-weight-normal font-italic d-block">Category:
-                                                    Candles</span>
-                                            </div>
-                                        </div>
-                                    </th>
-                                    <td class="border-0 align-middle"><strong>${{item.product.price}}</strong></td>
-                                    <td class="border-0 align-middle">
-                                        <div class="input-group">
-                                            <input type="number" class="form-control" value="3">
-                                        </div>
-                                    </td>
-                                    <td class="border-0 align-middle"><a href="#"
-                                            class="text-dark"><i class="fa fa-trash"></i></a></td>
-                                </tr>
-								{% endfor %}
-                                <tr>
-                                    <th scope="row">
-                                        <div class="p-2">
-                                            <img src="{{item.product.image.url}}"
-                                                alt="" width="70"
-                                                class="img-fluid rounded shadow-sm">
-                                            <div class="ml-3 d-inline-block align-middle">
-                                                <h5 class="mb-0"><a href="#"
-                                                        class="text-dark d-inline-block">{{item.product.name}}</a></h5><span
-                                                    class="text-muted font-weight-normal font-italic">Category:
-                                                    Skin Products</span>
-                                            </div>
-                                        </div>
-                                    </th>
-                                    <td class="align-middle"><strong>${{item.product.price}}</strong></td>
-                                    <td class="align-middle">
-                                        <div class="input-group">
-                                            <input type="number" class="form-control" value="3">
-                                        </div>
-                                    </td>
-                                    <td class="align-middle"><a href="#"
-                                            class="text-dark"><i class="fa fa-trash"></i></a>
-                                    </td>
-                                </tr>
-                               
-                            </tbody>
-                        </table>
-						
-                    </div>
-                    <!-- End -->
-					
-                </div>
-				
-            </div>
-	
-		  <div class="row py-5 p-4 bg-white rounded shadow-sm">
+	<div class="row py-5 p-4 bg-white rounded shadow-sm">
+		{% if cart.items.all %}
 			<div class="col-lg-6">
-			  <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Coupon code</div>
-			  <div class="p-4">
-				<p class="font-italic mb-4">If you have a coupon code, please enter it in the box below</p>
-				<div class="input-group mb-4 border rounded-pill p-2">
-				  <input type="text" placeholder="Apply coupon" aria-describedby="button-addon3" class="form-control border-0">
-				  <div class="input-group-append border-0">
-					<button id="button-addon3" type="button" class="btn btn-dark px-4 rounded-pill"><i class="fa fa-gift mr-2"></i>Apply coupon</button>
-				  </div>
+				<div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Order Items</div>
+				<div class="p-4">
+					{% for order_item in order.items.all %}
+						<div class="d-flex justify-content-between align-items-center mb-3">
+							<div class="d-flex flex-row align-items-center">
+								<img src="{{ item.product.image.url }}" alt="{{ order_item.product.name }}" class="img-fluid rounded shadow-sm mr-2" width="50">
+								<div class="ml-3">
+									<h5 class="mb-0"><a href="#" class="text-dark d-inline-block align-middle">{{ order_item.product.name }}</a></h5>
+									<span class="text-muted font-weight-normal font-italic d-block">Category: {{ order_item.product.category }}</span>
+								</div>
+							</div>
+							<div>
+								<span class="font-weight-bold">{{ order_item.quantity }}</span>
+							</div>
+						</div>
+					{% endfor %}
 				</div>
-			  </div>
-			  <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Instructions for seller</div>
-			  <div class="p-4">
-				<p class="font-italic mb-4">If you have some information for the seller you can leave them in the box below</p>
-				<textarea name="" cols="30" rows="2" class="form-control"></textarea>
-			  </div>
 			</div>
+		{% else %}
 			<div class="col-lg-6">
-			  <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Order summary </div>
-			  <div class="p-4">
-				<p class="font-italic mb-4">Shipping and additional costs are calculated based on values you have entered.</p>
-				<ul class="list-unstyled mb-4">
-				  <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Order Subtotal </strong><strong>$390.00</strong></li>
-				  <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Shipping and handling</strong><strong>$10.00</strong></li>
-				  <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Tax</strong><strong>$0.00</strong></li>
-				  <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Total</strong>
-					<h5 class="font-weight-bold">$400.00</h5>
-				  </li>
-				</ul><a href="check.html" class="btn btn-dark rounded-pill py-2 btn-block">Procceed to checkout</a>
-			  </div>
+				<div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Order summary</div>
+				<div class="p-4">
+					<ul class="list-unstyled mb-4">
+						<!-- You can dynamically calculate the order subtotal and total here -->
+						<li class="d-flex justify-content-between py-3 border-bottom">
+							<strong class="text-muted">Order Subtotal </strong>
+							{% if cart.total_amount %}
+								<strong id="order-subtotal">₦{{ order_item.get_total_amount }}</strong>
+							{% else %}
+								<strong id="order-subtotal">N/A</strong>
+							{% endif %}
+						</li>
+						<li class="d-flex justify-content-between py-3 border-bottom">
+							<strong class="text-muted">Shipping and handling</strong>
+							<strong id="shipping-cost">$10.00</strong>
+						</li>
+						<li class="d-flex justify-content-between py-3 border-bottom">
+							<strong class="text-muted">Total</strong>
+							{% if order_item.total_amount %}
+								<h5 id="order-total" class="font-weight-bold">${{ order_item.get_total_amount }}</h5>
+							{% else %}
+								<h5 id="order-total" class="font-weight-bold">N/A</h5>
+							{% endif %}
+						</li>
+					</ul>
+					<a href="{% url 'checkout' %}" class="btn btn-dark rounded-pill py-2 btn-block">Proceed to checkout</a>
+				</div>
 			</div>
-		</div>
-		</div>
-		</div>
-		
-		</div>
+		{% endif %}
+	</div>
 	
-
 
 	
 	
@@ -354,22 +283,6 @@
 
 	
 </div>
-<script>
-	// Get references to the search icon and search overlay
-const searchIcon = document.getElementById('search-icon');
-const searchOverlay = document.getElementById('search-overlay');
-
-// Toggle the visibility of the search overlay when the search icon is clicked
-searchIcon.addEventListener('click', function () {
-    if (searchOverlay.style.display === 'block') {
-        searchOverlay.style.display = 'none';
-    } else {
-        searchOverlay.style.display = 'block';
-    }
-});
-
-</script>
-
 <script src="{% static 'categories/js/jquery-3.2.1.min.js' %}"></script>
 <script src="{% static 'categories/styles/bootstrap4/popper.js' %}"></script>
 <script src="{% static 'categories/styles/bootstrap4/bootstrap.min.js' %}"></script>
@@ -378,6 +291,38 @@ searchIcon.addEventListener('click', function () {
 <script src="{% static 'categories/plugins/easing/easing.js' %}"></script>
 <script src="{% static 'categories/plugins/jquery-ui-1.12.1.custom/jquery-ui.js' %}"></script>
 <script src="{% static 'categories/js/single_custom.js' %}"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+    // Function to update order summary based on selected items in the cart
+    function updateOrderSummary() {
+        // Assuming you have an array of products in the cart
+        const products = [
+            { name: 'Product 1', quantity: 2, price: {{product.price}} },
+            { name: 'Product 2', quantity: 1, price: {{product.price}} },
+            // Add more products as needed
+        ];
+
+        // Calculate order subtotal
+        const orderSubtotal = products.reduce((total, product) => {
+            return total + (product.quantity * product.price);
+        }, 0);
+
+        // Set order subtotal in the HTML
+        document.getElementById('order-subtotal').innerText = `$${orderSubtotal.toFixed(2)}`;
+
+        // Calculate total amount (excluding shipping cost and tax)
+        const totalAmount = orderSubtotal;
+
+        // Set total amount in the HTML
+        document.getElementById('order-total').innerText = `$${totalAmount.toFixed(2)}`;
+    }
+
+    // Call updateOrderSummary when the page loads
+    updateOrderSummary();
+</script>
+
+
 </body>
 
 </html>

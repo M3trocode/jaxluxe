@@ -10,6 +10,21 @@
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="{% static "assets/images/intro/icon.png" %}" rel="icon">
+    <meta name="description" content="Jax Luxe: Your Premier Destination for Luxurious Skin Products and Candles. Explore our curated collection of high-quality skincare and exquisite candles.">
+    <meta name="keywords" content="Jax Luxe, online store, skin products, candles, luxury skincare, scented candles, beauty products, pampering, self-care">
+    <meta name="author" content="Jax Luxe">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Jax Luxe: Premier Destination for Luxurious Skin Products and Candles">
+    <meta property="og:description" content="Indulge in luxury with Jax Luxe – your one-stop online store for premium skin products and artisanal candles. Elevate your self-care routine with our curated collection.">
+    <meta property="og:image" content="thumbnails.jpg">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Jax Luxe">
+    <meta name="twitter:title" content="Jax Luxe: Premier Destination for Luxurious Skin Products and Candles">
+    <meta name="twitter:description" content="Indulge in luxury with Jax Luxe – your one-stop online store for premium skin products and artisanal candles. Elevate your self-care routine with our curated collection.">
+    <meta name="twitter:image" content="thumbnails.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:image" content="thumbnails.jpg">
+    <meta name="twitter:image" content="thumbnails.jpg">
 
     <!-- ========================= CSS here ========================= -->
     <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}" />
@@ -48,15 +63,18 @@
                     <div class="col-lg-4 col-md-4 col-12">
                         <div class="top-end">
                             <div class="user">
-                                <i class="lni lni-user"></i>
-                                Hello
+                                {% if user %}
+        Hello {{ user.username }}
+    {% else %}
+        Hello Guest
+    {% endif %}
                             </div>
                             <ul class="user-login">
                                 <li>
-                                    <a href="/login.html/">Log In</a>
+                                    <a href="/login/">Log In</a>
                                 </li>
                                 <li>
-                                    <a href="/signup.html/">Sign Up</a>
+                                    <a href="/signup/">Sign Up</a>
                                 </li>
                             </ul>
                         </div>
@@ -71,7 +89,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-3 col-7">
                         <!-- Start Header Logo -->
-                        <a class="navbar-brand" href="index.html">
+                        <a class="navbar-brand" href="/index/">
                             <img src="{% static 'assets/images/Landscape logo.png' %}" alt="Logo">
                            
                         </a>
@@ -111,7 +129,7 @@
                             <div class="navbar-cart">
                                 
                                 <div class="cart-items">
-                                    <a href="/cart.html/" class="main-btn">
+                                    <a href="/cart/" class="main-btn">
                                         <i class="lni lni-cart"></i>
                                         <span class="total-items">2</span>
                                     </a>
@@ -136,10 +154,10 @@
                         <div class="mega-category-menu">
                             <span class="cat-button"><i class="lni lni-menu"></i>All Categories</span>
                             <ul class="sub-category">
-                                <li><a href="/categories.html/">Skin Product <i class="lni lni-chevron-right"></i></a>
+                                <li><a href="{% url "categories" "Skin-Product" %}">Skin Product <i class="lni lni-chevron-right"></i></a>
                                     
                                 </li>
-                                <li><a href="/categories2.html/">Candles<i class="lni lni-chevron-right"></i></a></li>
+                                <li><a href="{% url "categories" "Candles" %}">Candles<i class="lni lni-chevron-right"></i></a></li>
                                 
                             </ul>
                         </div>
@@ -160,7 +178,7 @@
                                     </li>
                                     
                                     <li class="nav-item">
-                                        <a href="/categories.html/" aria-label="Toggle navigation">Store</a>
+                                        <a href="{% url "categories" "Skin-Product" %}" aria-label="Toggle navigation">Store</a>
                                     </li>
                                     
                                     <li class="nav-item">
@@ -216,15 +234,15 @@
                         <div class="hero-slider">
                             <!-- Start Single Slider -->
                             <div class="single-slider"
-                                style="background-image: url({% static "assets/images/product/beauty1.jpg" %});">
+                                style="background-image: url({% static 'assets/images/FACELOVER_mockup.jpg' %});">
                                 <div class="content">
-                                    <h2><span>No restocking fee ( ₦35 savings)</span>
-                                    Lip Gloss
+                                    <h2><span>Available</span>
+                                    Skin Products and Candles
                                     </h2>
                                     
-                                    <h3><span>Now Only</span> ₦320.99</h3>
+                                    <h3><span>Now Only</span></h3>
                                     <div class="button">
-                                        <a href="/categories.html/" class="btn">Shop Now</a>
+                                        <a href="{% url "categories" "Skin-Product" %}" class="btn">Shop Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -245,104 +263,44 @@
     <section class="trending-product section" style="margin-top: 12px;">
         <div class="container">
             <div class="row">
+                
                 <div class="col-12">
+                   
                     <div class="section-title">
-                        <h2>Trending Product</h2>
-                        
+                        <h2>All Products</h2>
+                       
                     </div>
                 </div>
             </div>
+            
             <div class="row">
-                <div class="col-lg-3 col-md-6 col-12">
+                {% for product in products %}
+                <div class="col-lg-4 col-md-6 col-12">
+                    
                     <!-- Start Single Product -->
                     <div class="single-product">
                         <div class="product-image">
-                            <img src="{% static 'assets/images/product/candle1.jpg' %}" alt="#">
+                            <img src="{{product.image.url}}" alt="#" class="product-image">
                             <div class="button">
                                 <a href="#" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
                             </div>
                         </div>
                         <div class="product-info">
-                            <span class="category">Candles</span>
+                            <span class="category">{{product.category.name}}</span>
                             <h4 class="title">
-                                <a href="/product.html/">Beautiful blue scent</a>
+                                <a href="{% url 'product' product_id=product.id %}">{{ product.name }}</a>
+
                             </h4>
                             
                             <div class="price">
-                                <span>₦199.00</span>
+                                <span>₦{{product.price}}</span>
                             </div>
                         </div>
                     </div>
                     <!-- End Single Product -->
                 </div>
-                <div class="col-lg-3 col-md-6 col-12">
-                    <!-- Start Single Product -->
-                    <div class="single-product">
-                        <div class="product-image">
-                            <img src="{% static 'assets/images/product/candle2.jpg' %}" alt="#">
-                            <span class="sale-tag">-25%</span>
-                            <div class="button">
-                                <a href="#" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <span class="category">Candle</span>
-                            <h4 class="title">
-                                <a href="product.html">Small portable</a>
-                            </h4>
-                          
-                            <div class="price">
-                                <span>₦275.00</span>
-                                <span class="discount-price">₦300.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Product -->
-                </div>
-                <div class="col-lg-3 col-md-6 col-12">
-                    <!-- Start Single Product -->
-                    <div class="single-product">
-                        <div class="product-image">
-                            <img src="{% static 'assets/images/product/facecream.jpg' %}" alt="#">
-                            <div class="button">
-                                <a href="#" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <span class="category">Skin Product</span>
-                            <h4 class="title">
-                                <a href="product.html">Face Cream</a>
-                            </h4>
-                           
-                            <div class="price">
-                                <span>₦399.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Product -->
-                </div>
-                <div class="col-lg-3 col-md-6 col-12">
-                    <!-- Start Single Product -->
-                    <div class="single-product">
-                        <div class="product-image">
-                            <img src="{% static 'assets/images/product/cosmetics.jpg' %}" alt="#">
-                            <span class="new-tag">New</span>
-                            <div class="button">
-                                <a href="#" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <span class="category">Skin Product</span>
-                            <h4 class="title">
-                                <a href="product.html">Costmetics</a>
-                            </h4>
-                           
-                            <div class="price">
-                                <span>₦400.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Product -->
+
+                {% endfor %}
                 </div>
                 
             </div>
@@ -486,8 +444,8 @@
     </a>
 
     <!-- ========================= JS here ========================= -->
-    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'assets/js/tiny-slider.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'assets/js/glightbox.min.js' %}"></script>
     <script src="{% static 'assets/js/main.js' %}"></script>
     <script type="text/javascript">
