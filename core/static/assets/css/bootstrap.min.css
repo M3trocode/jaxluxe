@@ -706,6 +706,12 @@ progress {
     margin-left: calc(var(--bs-gutter-x)/ -2)
 }
 
+
+.product-image {
+  width: 100%; /* Adjust the width as needed */
+  height: auto; /* Maintain the aspect ratio */
+}
+
 .row>* {
     flex-shrink: 0;
     width: 100%;

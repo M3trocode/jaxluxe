@@ -58,20 +58,21 @@
             <img src="{% static 'assets/images/login.png' %}" class="img-fluid" alt="Jax Luxe">
           </div>
           <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-            <form action="#" method="post">
+            <form method="POST" action>
+              {% csrf_token %}
 
            
               <!--add any id format you want, it's not added yet-->
 
               <!-- Email input -->
               <div class="form-outline mb-4">
-                <input type="email" placeholder="" name="email" required=""  class="form-control form-control-lg" />
-                <label class="form-label" for="form1Example13">Email Address</label>
+                <input type="text" placeholder="" name="username" required=""  class="form-control form-control-lg" />
+                <label class="form-label" for="form1Example13">Username</label>
               </div>
   
               <!-- Password input -->
               <div class="form-outline mb-4">
-                <input type="password" placeholder="" name="pass1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Password must contain at least one number, one lowercase and one uppercase letter, and at least 8 or more characters" required="" class="form-control form-control-lg" />
+                <input type="password" placeholder="" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Password must contain at least one number, one lowercase and one uppercase letter, and at least 8 or more characters" required="" class="form-control form-control-lg" />
                 <span class="error" id="errorMessage"></span>
                 <label class="form-label" for="form1Example23">Password</label>
               </div>
@@ -94,7 +95,7 @@
   
   
 
-              <a class="btn btn-primary btn-lg btn-block" style="background-color: #dd4b39" href="#!" role="button">
+              <a class="btn btn-primary btn-lg btn-block" style="background-color: #dd4b39" href="welcome" role="button">
                 <i class="fab fa-facebook-f me-2"></i>Sign In with Gmail
               </a>
               <div class="divider d-flex align-items-center my-4">

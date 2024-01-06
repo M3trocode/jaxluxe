@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 {% load static %}
-
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -58,37 +57,38 @@
             <img src="{% static 'assets/images/signup.png' %}" class="img-fluid" alt="Jax Luxe">
           </div>
           <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-            <form action="#" method="post">
-
-              <!-- Fullnmae -->
-              <!--add any id format you want, it's not added yet-->
-
-                 <div class="form-outline mb-4">
-                   <input type="text" placeholder="" name="uname" required=""  class="form-control form-control-lg" />
-                    <label class="form-label" for="form1Example13">Full Name</label>
-                  </div>
+            <form method="POST" action>
+              {% csrf_token %} 
                 
               
               
               <!-- Username -->
 
                <div class="form-outline mb-4">
-                <input type="text" placeholder="" name="uname" required="" pattern="^[a-zA-Z][a-zA-Z0-9]{5,}$" title="Username must start with a letter and have at least 6 characters (letters or numbers)" class="form-control form-control-lg" />
+                {{form.username}}           
                 <label class="form-label" for="form1Example13">Username</label>
               </div>
   
               <!-- Email input -->
               <div class="form-outline mb-4">
-                <input type="email" placeholder="" name="email" required=""  class="form-control form-control-lg" />
-                <label class="form-label" for="form1Example13">Email Address</label>
+                {{form.email}}
+                                <label class="form-label" for="form1Example13">Email Address</label>
               </div>
   
               <!-- Password input -->
               <div class="form-outline mb-4">
-                <input type="password" placeholder="" name="pass1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Password must contain at least one number, one lowercase and one uppercase letter, and at least 8 or more characters" required="" class="form-control form-control-lg" />
+                {{form.password1}}
                 <span class="error" id="errorMessage"></span>
                 <label class="form-label" for="form1Example23">Password</label>
               </div>
+
+              <!-- Confirm password -->
+              <!--add any id format you want, it's not added yet-->
+
+              <div class="form-outline mb-4">
+                {{form.password2}}
+                 <label class="form-label" for="form1Example13">Confirm Password</label>
+               </div>
   
               <div class="d-flex justify-content-around align-items-center mb-4">
                 <!-- Checkbox -->
@@ -122,7 +122,7 @@
                 <p class="text-center fw-bold mx-3 mb-0 text-muted">Already have an account?</p>
               </div>
 
-              <a class="btn btn-primary btn-lg btn-block" style="background-color: rgb(123, 121, 121)" href="login.html" role="button">
+              <a class="btn btn-primary btn-lg btn-block" style="background-color: rgb(123, 121, 121)" href="/login/" role="button">
                 <i class="fab fa-facebook-f me-2"></i>Login
               </a>
               
@@ -152,3 +152,4 @@
 
 
 </html>
+

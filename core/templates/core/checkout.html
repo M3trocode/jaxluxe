@@ -1,6 +1,7 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
-	{% load static %}
+	
 
 <head>
     <meta charset="UTF-8">
@@ -11,13 +12,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/intro/icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static "assets/images/intro/icon.png" %}">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/images/intro/icon.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/intro/icon.png">
     <link href="assets/images/intro/icon.png" rel="icon">
 
     <!-- Plugins CSS File -->
-    <link rel="stylesheet" href="{% static 'cart/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static "cart/css/bootstrap.min.css" %}">
     <!-- Main CSS File -->
     <link rel="stylesheet" href="{% static 'cart/css/style.css' %}">
 

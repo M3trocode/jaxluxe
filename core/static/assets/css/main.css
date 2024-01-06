@@ -3255,7 +3255,7 @@ top: 2px;
   -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
   margin-top: 30px;
-  -webkit-box-shadow: 0px 0px 20px #00000012;
+  -webkit-box-shadow: 0px 0px 20px #dadada12;
   box-shadow: 0px 0px 20px #00000012;
   padding: 8px;
   background: #fff;
@@ -4097,6 +4097,11 @@ top: 2px;
   .product-details-info .info-body.custom-responsive-margin {
     margin-bottom: 30px;
   }
+}
+
+.product-image {
+  width: 100%; /* Adjust the width as needed */
+  height: auto; /* Maintain the aspect ratio */
 }
 
 .product-details-info .info-body h4 {

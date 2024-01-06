@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>Order Confirmation</title>
+    <style>
+          body {
+            font-family: 'Helvetica Neue', sans-serif;
+            background: url('assets/images/confirmation.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .confirmation-container {
+            width: 100%;
+            max-width: 400px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 20px;
+        }
+
+        .confirmation-heading {
+            font-size: 28px;
+            color: #CEAE67;
+            margin: 0 0 20px;
+        }
+
+        .confirmation-message {
+            font-size: 18px;
+            color: #333;
+            margin: 0 0 30px;
+        }
+
+        .categories-link {
+            text-align: center;
+        }
+
+        .categories-link a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #CEAE67;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .categories-link a:hover {
+            background-color: #CEAE67;
+        }
+    </style>
+</head>
+<body>
+    <div class="confirmation-container">
+        <h1 class="confirmation-heading">Order Confirmation</h1>
+        <p class="confirmation-message">Thank you for your purchase. Your order has been confirmed.</p>
+        <div class="categories-link">
+            <a href="dashboard.html">View Order Status</a>
+        </div>
+    </div>
+</body>
+</html>

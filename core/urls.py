@@ -3,14 +3,16 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name="index"),
-    path('welcome.html/', views.welcome, name="welcome"),
-    path('cart.html/', views.cart, name="cart"),
-    path('check.html/', views.check,name="check"),
-    path('product.html/', views.product,name="product"),
-    path('checkout.html/', views.checkout, name="checkout"),
-    path('login.html/', views.login, name="login"),
-    path('signup.html/', views.signup, name="signup"),
-    path('categories.html/', views.categories, name="categories"),
-    path('categories2.html/', views.categories2, name="categoroies2"),
-    
+    path('welcome/', views.welcome, name="welcome"),
+    path('cart/', views.cart, name="cart"),
+    path('check/', views.check,name="check"),
+    path('product/<int:product_id>/', views.product,name="product"),
+    path('checkout/', views.checkout, name="checkout"),
+    path('login/', views.my_login_view, name='login'),
+    path('signup/', views.signup, name="signup"),
+    path('categories/<str:tool>', views.categories, name="categories"),
+    path('categories2/<str:tool>', views.categories2, name="categories2"),
+    path('profile/', views.profile, name="profile"),
+    path('dashboard/', views.dashboard, name="dashboard"),
+    path('add-to-cart/', views.add_to_cart, name='add_to_cart'),
 ]
