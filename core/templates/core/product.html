@@ -113,7 +113,7 @@
 							<nav class="navbar">
 								<ul class="navbar_menu">
 									<li><a href="/">Home</a></li>
-									<li><a href="/categories/">Store</a></li>
+									<li><a href="{% url "categories" "Skin-Product" %}">Store</a></li>
 									<li><a href="#">Blog</a></li>
 									<li><a href="#">Helpline</a></li>
 								</ul>
@@ -123,10 +123,10 @@
 											<i class="fa fa-search" aria-hidden="true"></i>
 										</div>
 										<div class="search-overlay" id="search-overlay">
-											<form class="search-form" action="#" method="GET">
+											{% comment %} <form class="search-form" action="#" method="GET">
 												<input type="text" name="search" placeholder="Search" required>
 												<button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-											</form>
+											</form> {% endcomment %}
 										</div>
 									</li>
 															
@@ -135,7 +135,7 @@
 									<li class="checkout">
 										<a href="/cart/">
 											<i class="fa fa-shopping-cart" aria-hidden="true"></i>
-											<span id="checkout_items" class="checkout_items">{{ request.session.cart_data_obj|length }}</span>
+											<span id="total-items" class="checkout_items">0</span>
 										</a>
 									</li>
 								</ul>
@@ -161,15 +161,15 @@
 				
 				
 				
-				<li class="menu_item"><a href="/index/">Home</a></li>
-				<li class="menu_item"><a href="/categories/">Store</a></li>
+				<li class="menu_item"><a href="/">Home</a></li>
+				<li class="menu_item"><a href="{% url "categories" "Skin-Product" %}">Store</a></li>
 				<li class="menu_item"><a href="#">Blog</a></li>
 				<li class="menu_item"><a href="#">Helpline</a></li>
 				<li class="menu_item has-children">
-					<a href="#">
+					{% comment %} <a href="#">
 						My Account
 						<i class="fa fa-angle-down"></i>
-					</a>
+					</a> {% endcomment %}
 					<ul class="menu_selection">
 						<li><a href="/login/"><i class="fa fa-sign-in" aria-hidden="true"></i>Log In</a></li>
 						<li><a href="/signup/"><i class="fa fa-user-plus" aria-hidden="true"></i>Sign Up</a></li>
@@ -187,8 +187,8 @@
 
 				<div class="breadcrumbs d-flex flex-row align-items-center">
 					<ul>
-						<li><a href="">Home</a></li>
-						<li><a href="/categories/"><i class="fa fa-angle-right" aria-hidden="true"></i>Store</a></li>
+						<li><a href="/">Home</a></li>
+						<li><a href="{% url "categories" "Skin-Product" %}"><i class="fa fa-angle-right" aria-hidden="true"></i>Store</a></li>
 						<li class="active"><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Item</a></li>
 					</ul>
 				</div>
@@ -215,13 +215,15 @@
 						<p>{{ product.description }}</p>
 					</div>
 	
-					<div class="product_price" id="current-product-price">₦{{ product.price }}</div>
+					<div class="product_price" id="">₦
+						<span id="current-product-price">{{ product.price }}</span></div>
 	
 					<div class="quantity d-flex flex-column flex-sm-row align-items-sm-center">
 						<span>Quantity:</span>
 						<input type="number" value="1" class="w-25 mb-10" name="" id="product-quantity">
 	
 						<input type="hidden" value="{{ product.name }}" class="product-name" name="" id="">
+						<input type="hidden" value="{{ product.id }}" class="product-id" name="" id="">
 						<button data-product-id="{{ product.id }}" 
 						data-action="add" 
 						class="red_button add_to_cart_button" 
@@ -391,10 +393,16 @@
 <script src="{% static 'categories/plugins/jquery-ui-1.12.1.custom/jquery-ui.js' %}"></script>
 <script src="{% static 'categories/js/single_custom.js' %}"></script>
 
-<script>
+<script type="text/javascript">
 	// Get references to the search icon and search overlay
 const searchIcon = document.getElementById('search-icon');
 const searchOverlay = document.getElementById('search-overlay');
+window.onload = function() {
+	const cartItems = JSON.parse(localStorage.getItem('cart_items') ?? '[]');
+const cartTotalItemsElement = document.getElementById('total-items');
+console.log(cartTotalItemsElement, cartItems);
+cartTotalItemsElement.innerText = cartItems.length;
+};
 
 // Toggle the visibility of the search overlay when the search icon is clicked
 searchIcon.addEventListener('click', function () {
@@ -405,37 +413,32 @@ searchIcon.addEventListener('click', function () {
     }
 });
 
-<script>
+
     // Add an event listener to the "Add to Cart" button
-    $('#add_to_cart_button').on('click', function() {
+	const addToCart = document.getElementById('add_to_cart_button');
+	addToCart.addEventListener('click', function() {
         let quantity = $('#product-quantity').val();
         let product_name = $('.product-name').val();
+        let product_id = $('.product-id').val();
+		product_id = parseInt(product_id);
         let product_price = $('#current-product-price').text();
 
-        $.ajax({
-            url: '/add_to_cart/',  // Use the correct URL for your add_to_cart view
-            method: 'POST',
-            data: {
-                quantity: quantity,
-                product_name: product_name,
-                product_price: product_price
-            },
-            headers: { 'X-CSRFToken': '{{ csrf_token }}' },  // Include CSRF token
-            success: function(response) {
-                console.log('Success:', response);
-                // You can update the cart count on the page if needed
+		const cartItems = JSON.parse(localStorage.getItem('cart_items') ?? '[]');
 
-                // Redirect to the cart page
-                window.location.href = '/cart/';
-            },
-            error: function(error) {
-                console.error('Error:', error);
-                // Handle error actions here
-            }
-        });
+		if (cartItems.find((x) => x.product_id === product_id)){
+			const productIdx = cartItems.findIndex((x) => x.product_id === product_id);
+			const newQuantity = parseInt(quantity) + parseInt(cartItems[productIdx].quantity);
+			cartItems[productIdx].quantity = newQuantity;
+		} else{
+			cartItems.push({ quantity, product_name, product_id, product_price });
+		}
+
+		localStorage.setItem('cart_items', JSON.stringify(cartItems));
+
+        window.location.href = '/cart/';
     });
-</script>
 
+	
 </script>
 </body>
 

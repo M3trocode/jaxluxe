@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 import uuid
-
+from django import forms
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     full_name = models.CharField(max_length=255)
@@ -85,10 +85,23 @@ class OrderItem(models.Model):
     def __str__(self):
         return f"{self.quantity} x {self.product.name}"
 
+class Shipping(models.Model):
+    firstname = models.CharField(max_length=255)
+    lastname = models.CharField(max_length=255)
+    emailadd = models.EmailField()
+    phone = models.CharField(max_length=20)
+    streetadd = models.CharField(max_length=255)
+    town = models.CharField(max_length=255)
+    zip_code = models.CharField(max_length=10)
+    selected_state = models.CharField(max_length=255)
+
+    def __str__(self):
+        return f"{self.firstname} {self.lastname} - Order ID: {self.id}"
 
 class Order(models.Model):
     order_id = models.CharField(max_length=36, blank=True, null=True)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    shipping_info = models.ForeignKey(Shipping, on_delete=models.SET_NULL, null=True, blank=True)
     is_ordered = models.BooleanField(default=False)
     items = models.ManyToManyField(Product, through=OrderItem)
 
@@ -136,12 +149,4 @@ def generate_order_id():
     return str(uuid.uuid4())
 
 
-class Shipping(models.Model):
-    address = models.CharField(max_length=255)
-    city = models.CharField(max_length=100)
-    state = models.CharField(max_length=100)
-    postal_code = models.CharField(max_length=20)
-    date_added = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        return self.address

@@ -1,334 +1,452 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
-	
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
     <title>Checkout</title>
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static "assets/images/intro/icon.png" %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/intro/icon.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/intro/icon.png">
-    <link href="assets/images/intro/icon.png" rel="icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static
+    "assets/images/intro/icon.png" %}">
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/images/intro/icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="assets/images/intro/icon.png"
+    />
+    <link href="assets/images/intro/icon.png" rel="icon" />
 
     <!-- Plugins CSS File -->
     <link rel="stylesheet" href="{% static "cart/css/bootstrap.min.css" %}">
     <!-- Main CSS File -->
-    <link rel="stylesheet" href="{% static 'cart/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'cart/css/style.css' %}" />
+  </head>
 
-
-</head>
-
-<body>
+  <body>
     <div class="page-wrapper">
-        <header class="header">
-            <div class="header-top">
-               
-            </div><!-- End .header-top -->
+      <header class="header">
+        <div class="header-top"></div>
+        <!-- End .header-top -->
 
-            <div class="header-middle sticky-header">
-                <div class="container">
-                    <div class="header-right">
-                        
+        <div class="header-middle sticky-header">
+          <div class="container">
+            <div class="header-right">
+              <a href="index.html" class="logo">
+                <img
+                  src="{% static 'assets/images/Landscape logo.png' %}"
+                  alt="Debbee Logo"
+                  width="105"
+                  height="25"
+                />
+              </a>
 
-                        <a href="index.html" class="logo">
-                            <img src="{% static 'assets/images/Landscape logo.png' %}" alt="Debbee Logo" width="105" height="25">
-                        </a>
+              <nav class="main-nav">
+                <ul class="menu sf-arrows">
+                  <li class="megamenu-container">
+                    <a href="/">Home</a>
+                  </li>
 
-                        <nav class="main-nav">
-                            <ul class="menu sf-arrows">
-                                <li class="megamenu-container">
-                                   <a href="index.html">Home</a>
-                                </li>
+                  <li class="megamenu-container">
+                    <a href="{% url "categories" "Skin-Product" %}">Store</a>
+                  </li>
 
-                                <li class="megamenu-container">
-                                  <a href="categories.html">Store</a>
-                                </li>
+                  <li class="megamenu-container">
+                    <a href="#">Blog</a>
+                  </li>
+                  <li class="megamenu-container">
+                    <a href="#">Helpline</a>
+                  </li>
+                </ul>
+                <!-- End .menu -->
+              </nav>
+              <!-- End .main-nav -->
+            </div>
+            <!-- End .header-left -->
 
-                                <li class="megamenu-container">
-                                  <a href="#">Blog</a>
-                                </li>
-                                <li class="megamenu-container">
-                                    <a href="#">Helpline</a>
-                                 </li>
+            <div class="header-right">
+              <div class="dropdown compare-dropdown">
+                <a
+                  href="#"
+                  class="dropdown-toggle"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  data-display="static"
+                  title="Compare Products"
+                  aria-label="Compare Products"
+                >
+                  <i class="icon-user"></i>
+                </a>
 
-                            </ul><!-- End .menu -->
-                        </nav><!-- End .main-nav -->
-                    </div><!-- End .header-left -->
+                <div class="dropdown-menu dropdown-menu-right">
+                  <div class="compare-actions">
+                    <a href="dashboard.html" class="action-link"
+                      >Account Details</a
+                    >
+                    <a href="#" class="btn btn-outline-primary-2"
+                      ><span>Logout</span><i class="icon-rocket"></i
+                    ></a>
+                  </div>
+                </div>
+                <!-- End .dropdown-menu -->
+              </div>
+              <!-- End .compare-dropdown -->
+            </div>
+            <!-- End .header-right -->
+          </div>
+          <!-- End .container -->
+        </div>
+        <!-- End .header-middle -->
+      </header>
+      <!-- End .header -->
 
-                    <div class="header-right">
-                        
-                        <div class="dropdown compare-dropdown">
-                            <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static" title="Compare Products" aria-label="Compare Products">
-                                <i class="icon-user"></i>
-                            </a>
+      <main class="main">
+        <div
+          class="page-header text-center"
+          style="background-image: url('assets/images/page-header-bg.jpg')"
+        >
+          <div class="container">
+            <h1 class="page-title">Checkout</h1>
+          </div>
+          <!-- End .container -->
+        </div>
+        <!-- End .page-header -->
+        <nav aria-label="breadcrumb" class="breadcrumb-nav">
+          <div class="container">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item">
+                <a href="{% url "categories" "Skin-Product" %}">Shop</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Checkout
+              </li>
+            </ol>
+          </div>
+          <!-- End .container -->
+        </nav>
+        <!-- End .breadcrumb-nav -->
 
-                            <div class="dropdown-menu dropdown-menu-right">
-                               
+        <div class="page-content">
+          <div class="checkout">
+            <div class="container">
+              <form>
+                <div class="row">
+                  <div class="col-lg-9">
+                    <h2 class="checkout-title">Billing Details</h2>
+                    {% csrf_token %}
+                    <!-- End .checkout-title -->
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <label>First Name *</label>
+                        <input type="text" class="form-control" required id="firstname"/>
+                      </div>
+                      <!-- End .col-sm-6 -->
 
-                                <div class="compare-actions">
-                                    <a href="dashboard.html" class="action-link">Account Details</a>
-                                    <a href="#" class="btn btn-outline-primary-2"><span>Logout</span><i class="icon-rocket"></i></a>
-                                </div>
-                            </div><!-- End .dropdown-menu -->
-                        </div><!-- End .compare-dropdown -->
+                      <div class="col-sm-6">
+                        <label>Last Name *</label>
+                        <input type="text" class="form-control" required  id="lastname"/>
+                      </div>
+                      <!-- End .col-sm-6 -->
+                    </div>
+                    <!-- End .row -->
 
-						
-                    </div><!-- End .header-right -->
-                </div><!-- End .container -->
-            </div><!-- End .header-middle -->
-        </header><!-- End .header -->
+                    <label>Country *</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      required
+                      value="Nigeria"
+                      readonly
+                    />
 
-        <main class="main">
-        	<div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
-        		<div class="container">
-        			<h1 class="page-title">Checkout</h1>
-        		</div><!-- End .container -->
-        	</div><!-- End .page-header -->
-            <nav aria-label="breadcrumb" class="breadcrumb-nav">
-                <div class="container">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                        <li class="breadcrumb-item"><a href="categories.html">Shop</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Checkout</li>
-                    </ol>
-                </div><!-- End .container -->
-            </nav><!-- End .breadcrumb-nav -->
+                    <label>Street Address *</label>
+                    <input
+                      type="text"
+                      class="form-control"
+					  id="streetadd"
+                      placeholder="House number and Street name"
+                      required
+                    />
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Appartments, suite, unit etc ..."
+                      required
+                    />
 
-            <div class="page-content">
-            	<div class="checkout">
-	                <div class="container">
-            			
-            			<form action="orderapproved.html">
-		                	<div class="row">
-		                		<div class="col-lg-9">
-		                			<h2 class="checkout-title">Billing Details</h2><!-- End .checkout-title -->
-		                				<div class="row">
-		                					<div class="col-sm-6">
-		                						<label>First Name *</label>
-		                						<input type="text" class="form-control" required>
-		                					</div><!-- End .col-sm-6 -->
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <label>Town / City *</label>
+                        <input type="text" class="form-control" id="town" required />
+                      </div>
+                      <!-- End .col-sm-6 -->
 
-		                					<div class="col-sm-6">
-		                						<label>Last Name *</label>
-		                						<input type="text" class="form-control" required>
-		                					</div><!-- End .col-sm-6 -->
-		                				</div><!-- End .row -->
+                      <div class="col-sm-6">
+                        <label>State / County *</label>
+                        <select
+                          id="stateSelect"
+                          name="state"
+                          class="form-control"
+                          required
+                        >
+                          <option value="Abia">Abia</option>
+                          <option value="Adamawa">Adamawa</option>
+                          <option value="Akwa Ibom">Akwa Ibom</option>
+                          <option value="Anambra">Anambra</option>
+                          <option value="Bauchi">Bauchi</option>
+                          <option value="Bayelsa">Bayelsa</option>
+                          <option value="Benue">Benue</option>
+                          <option value="Borno">Borno</option>
+                          <option value="Cross River">Cross River</option>
+                          <option value="Delta">Delta</option>
+                          <option value="Ebonyi">Ebonyi</option>
+                          <option value="Edo">Edo</option>
+                          <option value="Ekiti">Ekiti</option>
+                          <option value="Enugu">Enugu</option>
+                          <option value="Gombe">Gombe</option>
+                          <option value="Imo">Imo</option>
+                          <option value="Jigawa">Jigawa</option>
+                          <option value="Kaduna">Kaduna</option>
+                          <option value="Kano">Kano</option>
+                          <option value="Katsina">Katsina</option>
+                          <option value="Kebbi">Kebbi</option>
+                          <option value="Kogi">Kogi</option>
+                          <option value="Kwara">Kwara</option>
+                          <option value="Lagos">Lagos</option>
+                          <option value="Nasarawa">Nasarawa</option>
+                          <option value="Niger">Niger</option>
+                          <option value="Ogun">Ogun</option>
+                          <option value="Ondo">Ondo</option>
+                          <option value="Osun">Osun</option>
+                          <option value="Oyo">Oyo</option>
+                          <option value="Plateau">Plateau</option>
+                          <option value="Rivers">Rivers</option>
+                          <option value="Sokoto">Sokoto</option>
+                          <option value="Taraba">Taraba</option>
+                          <option value="Yobe">Yobe</option>
+                          <option value="Zamfara">Zamfara</option>
+                          <option value="Federal Capital Territory">
+                            Federal Capital Territory (FCT)
+                          </option>
+                        </select>
+                      </div>
+                      <!-- End .col-sm-6 -->
+                    </div>
+                    <!-- End .row -->
 
-	            						<label>Country *</label>
-	            						<input type="text" class="form-control" required>
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <label>Postcode / ZIP *</label>
+                        <input type="text" class="form-control" id="zip" required />
+                      </div>
+                      <!-- End .col-sm-6 -->
 
-	            						<label>Street Address *</label>
-	            						<input type="text" class="form-control" placeholder="House number and Street name" required>
-	            						<input type="text" class="form-control" placeholder="Appartments, suite, unit etc ..." required>
+                      <div class="col-sm-6">
+                        <label>Phone Number *</label>
+                        <input type="tel" class="form-control" id="phone" required />
+                      </div>
+                      <!-- End .col-sm-6 -->
+                    </div>
+                    <!-- End .row -->
 
-	            						<div class="row">
-		                					<div class="col-sm-6">
-		                						<label>Town / City *</label>
-		                						<input type="text" class="form-control" required>
-		                					</div><!-- End .col-sm-6 -->
+                    <label>Email Address *</label>
+                    <input type="email" class="form-control" id="emailadd" required />
 
-		                					<div class="col-sm-6">
-		                						<label>State / County *</label>
-		                						<input type="text" class="form-control" required>
-		                					</div><!-- End .col-sm-6 -->
-		                				</div><!-- End .row -->
+                    <label>Additional Note (optional)</label>
+                    <textarea
+                      class="form-control"
+					  id="note"
+                      cols="30"
+                      rows="4"
+                      placeholder="Notes about your order"
+                    ></textarea>
+                  </div>
+                  <!-- End .col-lg-9 -->
+                  <aside class="col-lg-3">
+                    <div class="summary">
+                      <h3 class="summary-title">Your Order</h3>
+                      <!-- End .summary-title -->
 
-		                				<div class="row">
-		                					<div class="col-sm-6">
-		                						<label>Postcode / ZIP *</label>
-		                						<input type="text" class="form-control" required>
-		                					</div><!-- End .col-sm-6 -->
+                      <table class="table table-summary" >
+                        <thead>
+                          <tr>
+                            <th>Product</th>
+                            <th>Total</th>
+                          </tr>
+                        </thead>
 
-		                					<div class="col-sm-6">
-		                						<label>Phone Number *</label>
-		                						<input type="tel" class="form-control" required>
-		                					</div><!-- End .col-sm-6 -->
-		                				</div><!-- End .row -->
+                        <tbody id="cart-items">
+                          <tr>
+                            <td>
+                              <a href="#">{{ order_item.product.name }}</a>
+                            </td>
+                            <td>₦84.00</td>
+                          </tr>
 
-	                					<label>Email Address *</label>
-	        							<input type="email" class="form-control" required>
+                          <tr>
+                            <td>
+                              <a href="#">Blue utility pinafore denimdress</a>
+                            </td>
+                            <td>₦76,00</td>
+                          </tr>
+                          <tr class="summary-subtotal">
+                            <td>Subtotal:</td>
+                            <td>₦160.00</td>
+                          </tr>
+                          <!-- End .summary-subtotal -->
+                          <tr>
+                            <td>Shipping:</td>
+                            <td>Free shipping</td>
+                          </tr>
+                          <tr class="summary-total">
+                            <td id="order-total">Total:</td>
+                            <td>₦160.00</td>
+                          </tr>
+                          <!-- End .summary-total -->
+                        </tbody>
+                      </table>
+                      <!-- End .table table-summary -->
 
-	                					<label>Additional Note (optional)</label>
-	        							<textarea class="form-control" cols="30" rows="4" placeholder="Notes about your order"></textarea>
-		                		</div><!-- End .col-lg-9 -->
-		                		<aside class="col-lg-3">
-		                			<div class="summary">
-		                				<h3 class="summary-title">Your Order</h3><!-- End .summary-title -->
+                      <div class="accordion-summary" id="accordion-payment">
+                        <div class="card">
+                          <div class="card-header" id="heading-1">
+                            <h2 class="card-title">
+                              <a
+                                role="button"
+                                data-toggle="collapse"
+                                href="#collapse-1"
+                                aria-expanded="true"
+                                aria-controls="collapse-1"
+                              >
+                                Direct bank transfer
+                              </a>
+                            </h2>
+                          </div>
+                          <!-- End .card-header -->
+                          <div
+                            id="collapse-1"
+                            class="collapse show"
+                            aria-labelledby="heading-1"
+                            data-parent="#accordion-payment"
+                          >
+                            <div class="card-body">
+                              Make your payment directly into our bank account.
+                              Please use your Order ID as the payment reference.
+                              Your order will not be shipped until the funds
+                              have cleared in our account.
+                            </div>
+                            <!-- End .card-body -->
+                          </div>
+                          <!-- End .collapse -->
+                        </div>
+                        <!-- End .card -->
+                      </div>
+                      <!-- End .accordion -->
 
-		                				<table class="table table-summary">
-		                					<thead>
-		                						<tr>
-		                							<th>Product</th>
-		                							<th>Total</th>
-		                						</tr>
-		                					</thead>
-
-		                					<tbody>
-		                						<tr>
-		                							<td><a href="#">Beige knitted elastic runner shoes</a></td>
-		                							<td> ₦84.00</td>
-		                						</tr>
-
-		                						<tr>
-		                							<td><a href="#">Blue utility pinafore denimdress</a></td>
-		                							<td> ₦76,00</td>
-		                						</tr>
-		                						<tr class="summary-subtotal">
-		                							<td>Subtotal:</td>
-		                							<td> ₦160.00</td>
-		                						</tr><!-- End .summary-subtotal -->
-		                						<tr>
-		                							<td>Shipping:</td>
-		                							<td>Free shipping</td>
-		                						</tr>
-		                						<tr class="summary-total">
-		                							<td>Total:</td>
-		                							<td> ₦160.00</td>
-		                						</tr><!-- End .summary-total -->
-		                					</tbody>
-		                				</table><!-- End .table table-summary -->
-
-		                				<div class="accordion-summary" id="accordion-payment">
-										    <div class="card">
-										        <div class="card-header" id="heading-1">
-										            <h2 class="card-title">
-										                <a role="button" data-toggle="collapse" href="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
-										                    Direct bank transfer
-										                </a>
-										            </h2>
-										        </div><!-- End .card-header -->
-										        <div id="collapse-1" class="collapse show" aria-labelledby="heading-1" data-parent="#accordion-payment">
-										            <div class="card-body">
-										                Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order will not be shipped until the funds have cleared in our account.
-										            </div><!-- End .card-body -->
-										        </div><!-- End .collapse -->
-										    </div><!-- End .card -->
-
-										    <div class="card">
-										        <div class="card-header" id="heading-2">
-										            <h2 class="card-title">
-										                <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-2" aria-expanded="false" aria-controls="collapse-2">
-										                    Check payments
-										                </a>
-										            </h2>
-										        </div><!-- End .card-header -->
-										        <div id="collapse-2" class="collapse" aria-labelledby="heading-2" data-parent="#accordion-payment">
-										            <div class="card-body">
-										                Ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. 
-										            </div><!-- End .card-body -->
-										        </div><!-- End .collapse -->
-										    </div><!-- End .card -->
-
-										    <div class="card">
-										        <div class="card-header" id="heading-3">
-										            <h2 class="card-title">
-										                <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-3" aria-expanded="false" aria-controls="collapse-3">
-										                    Cash on delivery
-										                </a>
-										            </h2>
-										        </div><!-- End .card-header -->
-										        <div id="collapse-3" class="collapse" aria-labelledby="heading-3" data-parent="#accordion-payment">
-										            <div class="card-body">Quisque volutpat mattis eros. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. 
-										            </div><!-- End .card-body -->
-										        </div><!-- End .collapse -->
-										    </div><!-- End .card -->
-
-										    <div class="card">
-										        <div class="card-header" id="heading-4">
-										            <h2 class="card-title">
-										                <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-4" aria-expanded="false" aria-controls="collapse-4">
-										                    PayPal <small class="float-right paypal-link">What is PayPal?</small>
-										                </a>
-										            </h2>
-										        </div><!-- End .card-header -->
-										        <div id="collapse-4" class="collapse" aria-labelledby="heading-4" data-parent="#accordion-payment">
-										            <div class="card-body">
-										                Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede. Donec nec justo eget felis facilisis fermentum.
-										            </div><!-- End .card-body -->
-										        </div><!-- End .collapse -->
-										    </div><!-- End .card -->
-
-										    <div class="card">
-										        <div class="card-header" id="heading-5">
-										            <h2 class="card-title">
-										                <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-5" aria-expanded="false" aria-controls="collapse-5">
-										                    Credit Card (Stripe)
-										                    <!--<img src="{% static 'assets/images/payments-summary.png' %}" alt="payments cards">-->
-										                </a>
-										            </h2>
-										        </div><!-- End .card-header -->
-										        <div id="collapse-5" class="collapse" aria-labelledby="heading-5" data-parent="#accordion-payment">
-										            <div class="card-body"> Donec nec justo eget felis facilisis fermentum.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Lorem ipsum dolor sit ame.
-										            </div><!-- End .card-body -->
-										        </div><!-- End .collapse -->
-										    </div><!-- End .card -->
-										</div><!-- End .accordion -->
-
-		                				<button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">
-		                					<span class="btn-text">Place Order</span>
-		                					<span class="btn-hover-text">Proceed to Checkout</span>
-		                				</button>
-		                			</div><!-- End .summary -->
-		                		</aside><!-- End .col-lg-3 -->
-		                	</div><!-- End .row -->
-            			</form>
-	                </div><!-- End .container -->
-                </div><!-- End .checkout -->
-            </div><!-- End .page-content -->
-        </main><!-- End .main -->
-
-       
-    </div><!-- End .page-wrapper -->
+                      <button
+                        type="submit"
+                        class="btn btn-outline-primary-2 btn-order btn-block"
+                        id="checkout-btn"
+                      >
+                        <span class="btn-text">Place Order</span>
+                        <span class="btn-hover-text">Proceed to Checkout</span>
+                      </button>
+                    </div>
+                    <!-- End .summary -->
+                  </aside>
+                  <!-- End .col-lg-3 -->
+                </div>
+                <!-- End .row -->
+              </form>
+            </div>
+            <!-- End .container -->
+          </div>
+          <!-- End .checkout -->
+        </div>
+        <!-- End .page-content -->
+      </main>
+      <!-- End .main -->
+    </div>
+    <!-- End .page-wrapper -->
 
     <!-- Mobile Menu -->
-    <div class="mobile-menu-overlay"></div><!-- End .mobil-menu-overlay -->
+    <div class="mobile-menu-overlay"></div>
+    <!-- End .mobil-menu-overlay -->
 
     <div class="mobile-menu-container">
-        <div class="mobile-menu-wrapper">
-            <span class="mobile-menu-close"><i class="icon-close"></i></span>
+      <div class="mobile-menu-wrapper">
+        <span class="mobile-menu-close"><i class="icon-close"></i></span>
 
-            <form action="#" method="get" class="mobile-search">
-                <label for="mobile-search" class="sr-only">Search</label>
-                <input type="search" class="form-control" name="mobile-search" id="mobile-search" placeholder="Search For..." required>
-                <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
-            </form>
-            
-            <nav class="mobile-nav">
-                <ul class="mobile-menu">
-                    <li>
-                        <a href="index.html">Home</a>
-                    </li>
-					<li>
-                        <a href="item-list.html">Store</a>
-                    </li>
-					<li>
-                        <a href="#">Terms and Conditions</a>
-                    </li>
-					<li>
-                        <a href="#">Logout </a>
-                    </li>
-                </ul>
-            </nav><!-- End .mobile-nav -->
+        <form action="#" method="get" class="mobile-search">
+          <label for="mobile-search" class="sr-only">Search</label>
+          <input
+            type="search"
+            class="form-control"
+            name="mobile-search"
+            id="mobile-search"
+            placeholder="Search For..."
+            required
+          />
+          <button class="btn btn-primary" type="submit">
+            <i class="icon-search"></i>
+          </button>
+        </form>
 
-            <div class="social-icons">
-                <a href="#" class="social-icon" target="_blank" title="Facebook"><i class="icon-facebook-f"></i></a>
-                <a href="#" class="social-icon" target="_blank" title="Twitter"><i class="icon-twitter"></i></a>
-                <a href="#" class="social-icon" target="_blank" title="Instagram"><i class="icon-instagram"></i></a>
-                <a href="#" class="social-icon" target="_blank" title="Youtube"><i class="icon-youtube"></i></a>
-            </div><!-- End .social-icons -->
-        </div><!-- End .mobile-menu-wrapper -->
-    </div><!-- End .mobile-menu-container -->
-    
+        <nav class="mobile-nav">
+          <ul class="mobile-menu">
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <a href="{% url "categories" "Skin-Product" %}">Store</a>
+            </li>
+            <li>
+              <a href="#">Terms and Conditions</a>
+            </li>
+            <li>
+              <a href="#">Logout </a>
+            </li>
+          </ul>
+        </nav>
+        <!-- End .mobile-nav -->
+
+        <div class="social-icons">
+          <a href="#" class="social-icon" target="_blank" title="Facebook"
+            ><i class="icon-facebook-f"></i
+          ></a>
+          <a href="#" class="social-icon" target="_blank" title="Twitter"
+            ><i class="icon-twitter"></i
+          ></a>
+          <a href="#" class="social-icon" target="_blank" title="Instagram"
+            ><i class="icon-instagram"></i
+          ></a>
+          <a href="#" class="social-icon" target="_blank" title="Youtube"
+            ><i class="icon-youtube"></i
+          ></a>
+        </div>
+        <!-- End .social-icons -->
+      </div>
+      <!-- End .mobile-menu-wrapper -->
+    </div>
+    <!-- End .mobile-menu-container -->
+
     <!-- Plugins JS File -->
     <script src="{% static 'cart/js/jquery.min.js' %}"></script>
-
     <script src="{% static 'cart/js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'cart/js/jquery.hoverIntent.min.js' %}"></script>
     <script src="{% static 'cart/js/jquery.waypoints.min.js' %}"></script>
@@ -336,7 +454,182 @@
     <script src="{% static 'cart/js/owl.carousel.min.js' %}"></script>
     <!-- Main JS File -->
     <script src="{% static 'cart/js/main.js' %}"></script>
-</body>
+    <script>
+      function renderOrderDetails() {
+        const cartItemsElement = document.getElementById("cart-items");
+        const orderTotalElement = document.getElementById("order-total");
+    
+        // Retrieve order information from localStorage
+        const orderDetails = JSON.parse(localStorage.getItem("cart_items") ?? "[]");
+    
+        // Clear existing cart items in HTML
+        cartItemsElement.innerHTML = "";
+    
+        let subTotal = 0;
+    
+        for (let i = 0; i < orderDetails.length; i++) {
+          var productRow = document.createElement("tr");
+    
+          // Create the product name cell
+          var productNameCell = document.createElement("td");
+          var productNameLink = document.createElement("a");
+          productNameLink.href = "#";
+          productNameLink.textContent = orderDetails[i].product_name;
+          productNameCell.appendChild(productNameLink);
+    
+          // Create the product quantity cell
+          var productQuantityCell = document.createElement("td");
+          var productQuantityText = document.createTextNode(orderDetails[i].quantity);
+          productQuantityCell.appendChild(productQuantityText);
+    
+          // Create the product total cell
+          var productTotalCell = document.createElement("td");
+          var productTotalText = document.createTextNode(`₦${orderDetails[i].product_price}`);
+          productTotalCell.appendChild(productTotalText);
+    
+          // Add the cells to the row
+          productRow.appendChild(productNameCell);
+          productRow.appendChild(productQuantityCell);
+          productRow.appendChild(productTotalCell);
+    
+          // Append the row to the cart items
+          cartItemsElement.appendChild(productRow);
+    
+          // Calculate subtotal
+          subTotal += parseInt(orderDetails[i].product_price) * parseInt(orderDetails[i].quantity);
+        }
+    
+        // Display the subtotal
+        var subTotalRow = document.createElement("tr");
+        var subTotalCellLabel = document.createElement("td");
+        subTotalCellLabel.textContent = "Subtotal:";
+        var subTotalCellValue = document.createElement("td");
+        subTotalCellValue.textContent = `₦${subTotal}`;
+        subTotalRow.appendChild(subTotalCellLabel);
+        subTotalRow.appendChild(subTotalCellValue);
+        cartItemsElement.appendChild(subTotalRow);
+    
+        // Display other summary rows as needed (e.g., shipping)
+    
+        // Calculate and display the order total
+        const orderTotal = subTotal; // No need for a separate function in this example
+        orderTotalElement.textContent = `Total: ₦ ${orderTotal}`;
+      }
+    
+      window.onload = function () {
+        renderOrderDetails();
+      };
+    </script>
+    
+    
+   
+    
+    <script>
+      const checkout_btn = document.getElementById("checkout-btn");
+checkout_btn.addEventListener("click", function (e) {
+    e.preventDefault();
+    handleSsubmit();
+});
+function getCookie(name) {
+  var cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+      var cookies = document.cookie.split(';');
+      for (var i = 0; i < cookies.length; i++) {
+          var cookie = cookies[i].trim();
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+              break;
+          }
+      }
+  }
+  return cookieValue;
+}
+function handleSsubmit() {
+  let formdata = {};
+  //Make Post request to checkout-post endpoint
+
+  // Include CSRF token in headers
+  const csrf_token = document.getElementsByName("csrfmiddlewaretoken")[0].value;
+
+        const inputElement = document.getElementById("firstname");
+        const inputValue = inputElement.value;
+		formdata["firstname"] = inputValue;
+
+        const inputElement1 = document.getElementById("lastname");
+		const inputValue1 = inputElement1.value;
+		formdata["lastname"] = inputValue1;
+
+        const inputElement2 = document.getElementById("emailadd");
+		const inputValue2 = inputElement2.value;
+		formdata["emailadd"] = inputValue2;
+		const inputElement3 = document.getElementById("phone");
+		const inputValue3 = inputElement3.value;
+		formdata["phone"] = inputValue3;
+
+		const inputElement4 = document.getElementById("streetadd");
+		const inputValue4 = inputElement4.value;
+		formdata["streetadd"] = inputValue4;
+
+    const inputElement5 = document.getElementById("town");
+    const inputValue5 = inputElement5.value;
+    formdata["town"] = inputValue5;
+    
+    const inputElement6 = document.getElementById("zip");
+    const inputValue6 = inputElement6.value;
+    formdata["zip"] = inputValue6;
+    
+
+  const selectElement = document.getElementById("stateSelect");
+  const selectedOption = selectElement.options[selectElement.selectedIndex];
+  const selectedValue = selectedOption.value;
+  formdata["selectedState"] = selectedValue
+
+  formdata["shippingFee"] = 10
+    
+  const orderDetails = JSON.parse(localStorage.getItem("cart_items") ?? "[]");
+  if (orderDetails.length <= 0) {
+    alert("Please add items to your cart");
+  }
+  
+  formdata["orderItems"]=[]
+  orderDetails.forEach((orderItem)=>{
+    formdata["orderItems"].push({
+      
+      "quantity":orderItem.quantity,
+      "product_id":orderItem.product_id
+    })
+  })
 
 
+  fetch("/checkout/checkout-post/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRFToken": getCookie("csrftoken"),  // Include CSRF token
+    },
+    body: JSON.stringify(formdata),
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then(data => {
+    if (data.success == true) {
+      console.log("Success:", data);
+      localStorage.removeItem("cart_items");
+      window.location.href = `/orderapproved?orderID=${data.data.order_id}&total=${data.data.totalfee}`;
+    } else {
+      console.log("Error in data:", data);
+      alert(data.error);
+    }
+  })
+  .catch(error => {
+    console.error("Fetch error:", error);
+  });
+
+}
+</script>
+  </body>
 </html>

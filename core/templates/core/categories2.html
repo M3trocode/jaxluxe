@@ -119,10 +119,10 @@
 										<i class="fa fa-search" aria-hidden="true"></i>
 									</div>
 									<div class="search-overlay" id="search-overlay">
-										<form class="search-form" action="#" method="GET">
+										{% comment %} <form class="search-form" action="#" method="GET">
 											<input type="text" name="search" placeholder="Search" required>
 											<button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-										</form>
+										</form> {% endcomment %}
 									</div>
 								</li>
 														
@@ -162,10 +162,10 @@
 				<li class="menu_item"><a href="#">Blog</a></li>
 				<li class="menu_item"><a href="#">Helpline</a></li>
 				<li class="menu_item has-children">
-					<a href="#">
+					{% comment %} <a href="#">
 						My Account
 						<i class="fa fa-angle-down"></i>
-					</a>
+					</a> {% endcomment %}
 					<ul class="menu_selection">
 						<li><a href="login.html"><i class="fa fa-sign-in" aria-hidden="true"></i>Log In</a></li>
 						<li><a href="signup.html"><i class="fa fa-user-plus" aria-hidden="true"></i>Sign Up</a></li>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% extends 'base.html' %}
+
 {% load static %}
 
 <html lang="en">
@@ -27,22 +27,21 @@
     <meta property="og:image" content="thumbnails.jpg">
     <meta name="twitter:image" content="thumbnails.jpg">
 
-    <!-- ========================= CSS here ========================= -->
-    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}" />
-    <link rel="stylesheet" href="{% static 'assets/css/LineIcons.3.0.css' %}" />
-    <link rel="stylesheet" href="{% static 'assets/css/tiny-slider.css' %}" />
-    <link rel="stylesheet" href="{% static 'assets/css/glightbox.min.css' %}" />
-    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
-<style>
+     <!-- ========================= CSS here ========================= -->
+     <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}" />
+     <link rel="stylesheet" href="{% static 'assets/css/LineIcons.3.0.css' %}" />
+     <link rel="stylesheet" href="{% static 'assets/css/tiny-slider.css' %}" />
+     <link rel="stylesheet" href="{% static 'assets/css/glightbox.min.css' %}" />
+     <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+
     {% block styles %}{% endblock %}
-</style>
 </head>
 
 <body>
+    <!-- Include your header here -->
     {% block header %}
-    <!-- Start Header Area -->
-
-    <header class="header navbar-area">
+     <!-- Start Header Area -->
+     <header class="header navbar-area">
         <!-- Start Topbar -->
         <div class="topbar">
             <div class="container">
@@ -102,7 +101,7 @@
                         <!-- Start Main Menu Search -->
                         <div class="main-menu-search">
                             <!-- navbar search start -->
-                            {% comment %} <form action="index.html">
+                            <form action="index.html">
                               <div class="navbar-search search-style-5">
                                   
                                
@@ -115,7 +114,7 @@
                                       </div>
                                   
                               </div>
-                            </form>   {% endcomment %}
+                            </form>  
                             <!-- navbar search Ends -->
                         </div>
                         <!-- End Main Menu Search -->
@@ -225,11 +224,14 @@
         <!-- End Header Bottom -->
     </header>
     <!-- End Header Area -->
+
+
     {% endblock %}
 
-{% block hero %}
-    <!-- Start Hero Area -->
-    <section class="hero-area">
+    <!-- Include your hero area here -->
+    {% block hero %}
+     <!-- Start Hero Area -->
+     <section class="hero-area">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-12 custom-padding-right">
@@ -264,6 +266,7 @@
     <!-- End Hero Area -->
     {% endblock %}
 
+    <!-- Include your trending product area here -->
     {% block trending_product %}
     <!-- Start Trending Product Area -->
     <section class="trending-product section" style="margin-top: 12px;">
@@ -318,14 +321,19 @@
         </div>
     </section>
     <!-- End Trending Product Area -->
-    {% endblock %}
+
     
 
     <!-- Start Shipping Info -->
 
+    {% endblock %}
+
+    <!-- Include your other sections here -->
+
+    <!-- Include your footer here -->
     {% block footer %}
-    <!-- Start Footer Area -->
-    <footer class="footer">
+     <!-- Start Footer Area -->
+     <footer class="footer">
         <!-- Start Footer Top -->
         <div class="footer-top">
             <div class="container">
@@ -450,7 +458,8 @@
     <!--/ End Footer Area -->
     {% endblock %}
 
-{% block scripts %}
+    <!-- Include your JS scripts here -->
+    {% block scripts %}
     <!-- ========================= scroll-top ========================= -->
     <a href="#" class="scroll-top">
         <i class="lni lni-whatsapp"></i>

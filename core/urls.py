@@ -14,5 +14,7 @@ urlpatterns = [
     path('categories2/<str:tool>', views.categories2, name="categories2"),
     path('profile/', views.profile, name="profile"),
     path('dashboard/', views.dashboard, name="dashboard"),
+    path('orderapproved/', views.orderapproved, name="orderapproved"),
     path('add-to-cart/', views.add_to_cart, name='add_to_cart'),
+    path('checkout/checkout-post/', views.checkout_post, name='checkout_post'),
 ]

@@ -120,10 +120,10 @@
 										<i class="fa fa-search" aria-hidden="true"></i>
 									</div>
 									<div class="search-overlay" id="search-overlay">
-										<form class="search-form" action="#" method="GET">
+										{% comment %} <form class="search-form" action="#" method="GET">
 											<input type="text" name="search" placeholder="Search" required>
 											<button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-										</form>
+										</form> {% endcomment %}
 									</div>
 								</li>
 														
@@ -163,10 +163,10 @@
 				<li class="menu_item"><a href="#">Blog</a></li>
 				<li class="menu_item"><a href="#">Helpline</a></li>
 				<li class="menu_item has-children">
-					<a href="#">
+					{% comment %} <a href="#">
 						My Account
 						<i class="fa fa-angle-down"></i>
-					</a>
+					</a> {% endcomment %}
 					<ul class="menu_selection">
 						<li><a href="/login/"><i class="fa fa-sign-in" aria-hidden="true"></i>Log In</a></li>
 						<li><a href="/signup/"><i class="fa fa-user-plus" aria-hidden="true"></i>Sign Up</a></li>
@@ -262,7 +262,7 @@
 												<img src="{{product.image.url}}" alt="">
 											</div>
 											<div class="favorite favorite_left"></div>
-											<div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$20</span></div>
+											{% comment %} <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$20</span></div> {% endcomment %}
 											<div class="product_info">
 												<h6 class="product_name"><a href="{% url 'product' product_id=product.id %}">{{product.name}}</a></h6>
 												<div class="product_price">₦{{product.price}}</div>
