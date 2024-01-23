@@ -132,7 +132,7 @@
 								<li class="checkout">
 									<a href="/cart/">
 										<i class="fa fa-shopping-cart" aria-hidden="true"></i>
-										<span id="checkout_items" class="checkout_items">2</span>
+										<span id="total-items" class="checkout_items">0</span>
 									</a>
 								</li>
 							</ul>
@@ -204,7 +204,9 @@
 						</ul>
 					</div>
 
+					
 					<!-- Price Range Filtering -->
+					<!--
 					<div class="sidebar_section">
 						<div class="sidebar_title">
 							<h5>Filter by Price</h5>
@@ -215,7 +217,7 @@
 						<div id="slider-range"></div>
 						<div class="filter_button"><span>filter</span></div>
 					</div>
-
+				  -->
 					
 				</div>
 
@@ -331,10 +333,16 @@
 	
 
 </div>
-<script>
+<script type="text/javascript">
 	// Get references to the search icon and search overlay
 const searchIcon = document.getElementById('search-icon');
 const searchOverlay = document.getElementById('search-overlay');
+window.onload = function() {
+	const cartItems = JSON.parse(localStorage.getItem('cart_items') ?? '[]');
+const cartTotalItemsElement = document.getElementById('total-items');
+console.log(cartTotalItemsElement, cartItems);
+cartTotalItemsElement.innerText = cartItems.length;
+};
 
 // Toggle the visibility of the search overlay when the search icon is clicked
 searchIcon.addEventListener('click', function () {
@@ -344,7 +352,22 @@ searchIcon.addEventListener('click', function () {
         searchOverlay.style.display = 'block';
     }
 });
+function addToCart(product_id, product_name, product_price, quantity){
+	console.log(`Adding  ${product_id} to cart`);
+	const cartItems = JSON.parse(localStorage.getItem('cart_items') ?? '[]');
 
+	if (cartItems.find((x) => x.product_id === product_id)){
+		const productIdx = cartItems.findIndex((x) => x.product_id === product_id);
+		const newQuantity = parseInt(quantity) + parseInt(cartItems[productIdx].quantity);
+		cartItems[productIdx].quantity = newQuantity;
+	} else{
+		cartItems.push({ quantity, product_name, product_id, product_price });
+	}
+
+	localStorage.setItem('cart_items', JSON.stringify(cartItems));
+
+	window.location.href = '/cart/';
+}
 </script>
 <script src="{% static 'categories/js/jquery-3.2.1.min.js' %}"></script>
 <script src="{% static 'categories/styles/bootstrap4/popper.js' %}"></script>
@@ -354,6 +377,8 @@ searchIcon.addEventListener('click', function () {
 <script src="{% static 'categories/plugins/easing/easing.js' %}"></script>
 <script src="{% static 'categories/plugins/jquery-ui-1.12.1.custom/jquery-ui.js' %}"></script>
 <script src="{% static 'categories/js/categories_custom.js' %}"></script>
+
+
 </body>
 
 </html>

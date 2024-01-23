@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="{% static 'assets/css/tiny-slider.css' %}" />
     <link rel="stylesheet" href="{% static 'assets/css/glightbox.min.css' %}" />
     <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+    
 <style>
     {% block styles %}{% endblock %}
 </style>
@@ -71,6 +72,15 @@
         Hello Guest
     {% endif %}
                             </div>
+                            {% if user %}
+                            <!-- Add Logout link here -->
+                            <ul class="user-login">
+                                <li>
+                                    <a href="/login/">Logout</a>
+                                </li>
+                            </ul>
+                        {% else %}
+                            <!-- Add Login and Signup links here -->
                             <ul class="user-login">
                                 <li>
                                     <a href="/login/">Log In</a>
@@ -79,7 +89,9 @@
                                     <a href="/signup/">Sign Up</a>
                                 </li>
                             </ul>
-                        </div>
+                        {% endif %}
+                    </div>
+                    
                     </div>
                 </div>
             </div>
@@ -206,12 +218,12 @@
                     <div class="nav-social">
                         <h5 class="title">Follow Us:</h5>
                         <ul>
-                            <li>
+                            {% comment %} <li>
                                 <a href="#"><i class="lni lni-facebook-filled"></i></a>
                             </li>
                             <li>
                                 <a href="#"><i class="lni lni-twitter-original"></i></a>
-                            </li>
+                            </li> {% endcomment %}
                             <li>
                                 <a href="#"><i class="lni lni-instagram-filled"></i></a>
                             </li>
@@ -240,10 +252,9 @@
                             <div class="single-slider"
                                 style="background-image: url({% static 'assets/images/FACELOVER_mockup.jpg' %});">
                                 <div class="content">
-                                    <h2><span>Available</span>
-                                    Skin Products and Candles
-                                    </h2>
-                                    
+                                    <h2><span>Available</span> </h2>
+                                    <h2 style="color: whitesmoke;">Skin Products and Candles</h2>
+                                   
                                     <h3><span>Now Only</span></h3>
                                     <div class="button">
                                         <a href="{% url "categories" "Skin-Product" %}" class="btn">Shop Now</a>
