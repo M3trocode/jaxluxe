@@ -71,26 +71,27 @@
     {% else %}
         Hello Guest
     {% endif %}
-                            </div>
-                            {% if user %}
-                            <!-- Add Logout link here -->
-                            <ul class="user-login">
-                                <li>
-                                    <a href="/login/">Logout</a>
-                                </li>
-                            </ul>
-                        {% else %}
-                            <!-- Add Login and Signup links here -->
-                            <ul class="user-login">
-                                <li>
-                                    <a href="/login/">Log In</a>
-                                </li>
-                                <li>
-                                    <a href="/signup/">Sign Up</a>
-                                </li>
-                            </ul>
-                        {% endif %}
                     </div>
+                    {% if user %}
+                        <!-- Add Logout link here -->
+                        <ul class="user-login">
+                            <li>
+                                <a href="/login/">Logout</a>
+                            </li>
+                        </ul>
+                    {% else %}
+                        <!-- Add Login and Signup links here -->
+                        <ul class="user-login">
+                            <li>
+                                <a href="/login/">Log In</a>
+                            </li>
+                            <li>
+                                <a href="/signup/">Sign Up</a>
+                            </li>
+                        </ul>
+                    {% endif %}
+                    </div>
+
                     
                     </div>
                 </div>
@@ -225,7 +226,7 @@
                                 <a href="#"><i class="lni lni-twitter-original"></i></a>
                             </li> {% endcomment %}
                             <li>
-                                <a href="#"><i class="lni lni-instagram-filled"></i></a>
+                                <a href="https://www.instagram.com/jaxluxeselfcare?igsh=MXVrdXBxZW54dWJyZg=="><i class="lni lni-instagram-filled"></i></a>
                             </li>
                            
                         </ul>
@@ -351,7 +352,7 @@
                         </div>
                         <div class="col-lg-9 col-md-8 col-12">
                             <div class="footer-newsletter">
-                                <h4 class="title">
+                                {% comment %} <h4 class="title">
                                     Subscribe to our Newsletter
                                     <span>Get all the latest information, on Sales and Offers.</span>
                                 </h4>
@@ -361,7 +362,7 @@
                                         <div class="button">
                                             <button class="btn">Subscribe<span class="dir-part"></span></button>
                                         </div>
-                                    </form>
+                                    </form> {% endcomment %}
                                 </div>
                             </div>
                         </div>
@@ -379,13 +380,13 @@
                             <!-- Single Widget -->
                             <div class="single-footer f-contact">
                                 <h3>Get In Touch With Us</h3>
-                                <p class="phone">Phone: +1 23 456 789</p>
-                                <ul>
+                                <p class="phone">Phone: +234 803 245 7647</p>
+                                {% comment %} <ul>
                                     <li><span>Monday-Friday: </span> 9.00 am - 8.00 pm</li>
                                     <li><span>Saturday: </span> 10.00 am - 6.00 pm</li>
-                                </ul>
+                                </ul> {% endcomment %}
                                 <p class="mail">
-                                    <a href="mailto:support@JL.com">support@jl.com</a>
+                                    <a href="abikeomolademakinde@gmail.com">abikeomolademakinde@gmail.com</a>
                                 </p>
                             </div>
                             <!-- End Single Widget -->
@@ -396,8 +397,8 @@
                             <div class="single-footer f-link">
                                 <h3>Useful links</h3>
                                 <ul>
-                                    <li><a href="categories.html">Store</a></li>
-                                    <li><a href="#">Contact Us</a></li>
+                                    <li><a href="{% url "categories" "Skin-Product" %}">Store</a></li>
+                                    <li><a href="https://www.instagram.com/jaxluxeselfcare?igsh=MXVrdXBxZW54dWJyZg==">Contact Us</a></li>
                                     <li><a href="#">Blog</a></li>
                                     <li><a href="#">Terms and Conditions</a></li>
                                     <li><a href="#">Privacy Policy</a></li>
@@ -410,9 +411,9 @@
                             <div class="single-footer f-link">
                                 <h3>My Account</h3>
                                 <ul>
-                                    <li><a href="login.html">Login</a></li>
-                                    <li><a href="signup.html">Sign Up</a></li>
-                                    <li><a href="#">Logout</a></li>
+                                    <li><a href="/login/">Login</a></li>
+                                    <li><a href="/signup/">Sign Up</a></li>
+                                    <li><a href="/login/">Logout</a></li>
                                     
                                 </ul>
                             </div>
@@ -446,9 +447,9 @@
                                 <li>
                                     <span>Contact Us:</span>
                                 </li>
-                                <li><a href="#"><i class="lni lni-facebook-filled"></i></a></li>
-                                <li><a href="#"><i class="lni lni-twitter-original"></i></a></li>
-                                <li><a href="#"><i class="lni lni-instagram"></i></a></li>
+                                {% comment %} <li><a href="#"><i class="lni lni-facebook-filled"></i></a></li>
+                                <li><a href="#"><i class="lni lni-twitter-original"></i></a></li> {% endcomment %}
+                                <li><a href="https://www.instagram.com/jaxluxeselfcare?igsh=MXVrdXBxZW54dWJyZg=="><i class="lni lni-instagram"></i></a></li>
                                
                             </ul>
                         </div>

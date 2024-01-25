@@ -129,9 +129,9 @@
 								
 								<li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>
 								<li class="checkout">
-									<a href="cart.html">
+									<a href="/cart/">
 										<i class="fa fa-shopping-cart" aria-hidden="true"></i>
-										<span id="checkout_items" class="checkout_items">2</span>
+										<span id="total-items" class="checkout_items">0</span>
 									</a>
 								</li>
 							</ul>
@@ -157,8 +157,8 @@
 				
 				
 				
-				<li class="menu_item"><a href="index.html">Home</a></li>
-				<li class="menu_item"><a href="#">Store</a></li>
+				<li class="menu_item"><a href="/">Home</a></li>
+				<li class="menu_item"><a href="{% url "categories" "Skin-Product" %}">Store</a></li>
 				<li class="menu_item"><a href="#">Blog</a></li>
 				<li class="menu_item"><a href="#">Helpline</a></li>
 				<li class="menu_item has-children">
@@ -167,8 +167,8 @@
 						<i class="fa fa-angle-down"></i>
 					</a> {% endcomment %}
 					<ul class="menu_selection">
-						<li><a href="login.html"><i class="fa fa-sign-in" aria-hidden="true"></i>Log In</a></li>
-						<li><a href="signup.html"><i class="fa fa-user-plus" aria-hidden="true"></i>Sign Up</a></li>
+						<li><a href="/login/"><i class="fa fa-sign-in" aria-hidden="true"></i>Log In</a></li>
+						<li><a href="/signup/"><i class="fa fa-user-plus" aria-hidden="true"></i>Sign Up</a></li>
 					</ul>
 				</li>
 			</ul>
@@ -184,7 +184,7 @@
 				<div class="breadcrumbs d-flex flex-row align-items-center">
 					<ul>
 						<li><a href="index.html">Home</a></li>
-						<li class="active"><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Store</a></li>
+						<li class="active"><a href="{% url "categories" "Skin-Product" %}"><i class="fa fa-angle-right" aria-hidden="true"></i>Store</a></li>
 					</ul>
 				</div>
 
@@ -197,8 +197,8 @@
 						</div>
 						<ul class="sidebar_categories">
 							
-							<li class="active"><a href="#"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>Candles</a></li>
-							<li><a href="categories.html">Skin Products</a></li>
+							<li class="active"><a href="{% url "categories" "Candles" %}"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>Candles</a></li>
+							<li><a href="{% url "categories" "Skin-Product" %}">Skin Products</a></li>
 							
 						</ul>
 					</div>
@@ -268,7 +268,10 @@
 												<div class="product_price">$520.00<span>$590.00</span></div>
 											</div>
 										</div>
-										<div class="red_button add_to_cart_button"><a href="#">add to cart</a></div>
+										<div class="red_button add_to_cart_button"><button data-product-id="{{ product.id }}" onclick="addToCart({{ product.id }}, '{{ product.name}}', {{ product.price}}, 1)" id="add_to_cart_button" 
+											data-action="add" 
+											class="red_button add_to_cart_button" 
+											id="add_to_cart_button">Add to Cart</button></div>
 									</div>
 
 									{% endfor %}
@@ -304,7 +307,7 @@
 	
 	<!-- Newsletter -->
 
-	<div class="newsletter">
+	{% comment %} <div class="newsletter">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6">
@@ -327,11 +330,17 @@
 
 	
 
-</div>
-<script>
+</div> {% endcomment %}
+<script type="text/javascript">
 	// Get references to the search icon and search overlay
 const searchIcon = document.getElementById('search-icon');
 const searchOverlay = document.getElementById('search-overlay');
+window.onload = function() {
+	const cartItems = JSON.parse(localStorage.getItem('cart_items') ?? '[]');
+const cartTotalItemsElement = document.getElementById('total-items');
+console.log(cartTotalItemsElement, cartItems);
+cartTotalItemsElement.innerText = cartItems.length;
+};
 
 // Toggle the visibility of the search overlay when the search icon is clicked
 searchIcon.addEventListener('click', function () {
@@ -341,7 +350,22 @@ searchIcon.addEventListener('click', function () {
         searchOverlay.style.display = 'block';
     }
 });
+function addToCart(product_id, product_name, product_price, quantity){
+	console.log(`Adding  ${product_id} to cart`);
+	const cartItems = JSON.parse(localStorage.getItem('cart_items') ?? '[]');
 
+	if (cartItems.find((x) => x.product_id === product_id)){
+		const productIdx = cartItems.findIndex((x) => x.product_id === product_id);
+		const newQuantity = parseInt(quantity) + parseInt(cartItems[productIdx].quantity);
+		cartItems[productIdx].quantity = newQuantity;
+	} else{
+		cartItems.push({ quantity, product_name, product_id, product_price });
+	}
+
+	localStorage.setItem('cart_items', JSON.stringify(cartItems));
+
+	window.location.href = '/cart/';
+}
 </script>
 <script src="{% static 'categories/js/jquery-3.2.1.min.js' %}"></script>
 <script src="{% static 'categories/styles/bootstrap4/popper.js' %}"></script>
