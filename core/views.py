@@ -21,6 +21,10 @@ def welcome(request):
     context = {'products': products}
     return render(request, 'core/welcome.html', context)
 
+def aboutus(request):
+    context = {}
+    return render(request, 'core/aboutus.html', context)
+
 def dashboard(request):
     products = Product.objects.all()
     context = {'products': products}
