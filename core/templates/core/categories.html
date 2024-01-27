@@ -160,7 +160,7 @@
 				
 				<li class="menu_item"><a href="/">Home</a></li>
 				<li class="menu_item"><a href="{% url "categories" "Skin-Product" %}">Store</a></li>
-				<li class="menu_item"><a href="#">Blog</a></li>
+				<li class="menu_item"><a href="/about/">About</a></li>
 				<li class="menu_item"><a href="#">Helpline</a></li>
 				<li class="menu_item has-children">
 					{% comment %} <a href="#">
@@ -185,7 +185,7 @@
 				<div class="breadcrumbs d-flex flex-row align-items-center">
 					<ul>
 						<li><a href="/">Home</a></li>
-						<li class="active"><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Store</a></li>
+						<li class="active"><a href="{% url "categories" "Skin-Product" %}"><i class="fa fa-angle-right" aria-hidden="true"></i>Store</a></li>
 					</ul>
 				</div>
 
