@@ -11,6 +11,8 @@ from .forms import OrderForm, CreateUserForm, CheckoutForm
 from decimal import Decimal
 import json
 from .forms import CheckoutForm
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 def index(request):
     context = {}
@@ -53,7 +55,7 @@ def profile(request):
 
 def cart(request):
     if request.user.is_authenticated:
-        customer = request.user.customer
+        customer = request.user.Customer
         order_items = OrderItem.objects.filter(order__customer=customer)
 
 
@@ -133,7 +135,10 @@ def my_login_view(request):
 
         if user is not None:
             login(request, user)
-            return redirect('welcome')
+            messages.success(request, 'You have been successfully logged in.')
+            return redirect('welcome')  # Assuming 'welcome' is a valid URL name
+        else:
+            messages.error(request, 'Invalid username or password. Please try again.')
 
     context = {}
     return render(request, 'core/login.html', context)
