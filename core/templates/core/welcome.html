@@ -72,7 +72,7 @@
         Hello Guest
     {% endif %}
                     </div>
-                    {% if user %}
+                    {% if user.is_authenticated %}
                         <!-- Add Logout link here -->
                         <ul class="user-login">
                             <li>
