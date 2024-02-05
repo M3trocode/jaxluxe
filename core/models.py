@@ -54,6 +54,7 @@ class Product(models.Model):
 
 
 class CartItem(models.Model):
+    user=models.ForeignKey(User, on_delete=models.SET, null=True)
     product_name = models.CharField(max_length=255)
     quantity = models.IntegerField(default=1)
 
