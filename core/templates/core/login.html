@@ -120,7 +120,12 @@
     <script type="text/javascript" src="{% static 'assets/js/mdb.min.js' %}"></script>
     <!-- Custom scripts -->
  
-
+    <script>
+      window.onload = function() {
+          localStorage.clear();
+          console.log("LocalStorage cleared!");
+      };
+    </script>
 
   </body>
 

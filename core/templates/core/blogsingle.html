@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+{% load static %}
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Jax Luxe - Blog</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="assets/images/intro/icon.png" rel="icon">
+    <!-- ========================= CSS here ========================= -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/LineIcons.3.0.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/tiny-slider.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/glightbox.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/blog.css' %}" />
+
+
+</head>
+
+<body>
+    <!-- Start Header Area -->
+    <header class="header navbar-area">
+        <!-- Start Topbar -->
+        <div class="topbar">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <div class="top-left">
+                            <ul class="menu-top-link">
+                                <li>
+                                   
+                                </li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <div class="top-middle">
+                            
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <div class="top-end">
+                            <div class="user">
+                                <i class="lni lni-user"></i>
+                                Hello
+                            </div>
+                            <ul class="user-login">
+                                <li>
+                                    <a href="login.html">Log In</a>
+                                </li>
+                                <li>
+                                    <a href="signup.html">Sign Up</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Topbar -->
+        <!-- Start Header Middle -->
+        <div class="header-middle">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-3 col-md-3 col-7">
+                        <!-- Start Header Logo -->
+                        <a class="navbar-brand" href="index.html">
+                            <img src="{% static 'assets/images/Landscape logo.png' %}" alt="Logo">
+                           
+                        </a>
+                        
+                        <!-- End Header Logo -->
+                    </div>
+                    <div class="col-lg-5 col-md-7 d-xs-none">
+                        <!-- Start Main Menu Search -->
+                        <div class="main-menu-search">
+                            <!-- navbar search start -->
+                            
+                            <!-- navbar search Ends -->
+                        </div>
+                        <!-- End Main Menu Search -->
+                    </div>
+                    <div class="col-lg-4 col-md-2 col-5">
+                        <div class="middle-right-area">
+                            <div class="nav-hotline">
+                               
+                                <h3>
+                                    <span></span>
+                                </h3>
+                            </div>
+                            <div class="navbar-cart">
+                                
+                                <div class="cart-items">
+                                    <a href="cart.html" class="main-btn">
+                                        <i class="lni lni-cart"></i>
+                                        
+                                    </a>
+                                    <!-- Shopping Item -->
+                                 
+                                    <!--/ End Shopping Item -->
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Header Middle -->
+        <!-- Start Header Bottom -->
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 col-md-6 col-12">
+                    <div class="nav-inner">
+                        <!-- Start Mega Category Menu -->
+                        <div class="mega-category-menu">
+                            <span class="cat-button"><i class="lni lni-menu"></i>All Categories</span>
+                            <ul class="sub-category">
+                                <li><a href="{% url "categories" "Skin-Product" %}">Skin Product <i class="lni lni-chevron-right"></i></a>
+                                    
+                                </li>
+                                <li><a href="{% url "categories" "Candles" %}">Candles<i class="lni lni-chevron-right"></i></a></li>
+                                
+                            </ul>
+                        </div>
+                        <!-- End Mega Category Menu -->
+                        <!-- Start Navbar -->
+                        <nav class="navbar navbar-expand-lg">
+                            <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                                <ul id="nav" class="navbar-nav ms-auto">
+                                    <li class="nav-item">
+                                        <a href="/" aria-label="Toggle navigation">Home</a>
+                                    </li>
+                                    
+                                    <li class="nav-item">
+                                        <a href="{% url "categories" "Skin-Product" %}" aria-label="Toggle navigation">Store</a>
+                                    </li>
+                                    
+                                    <li class="nav-item">
+                                        <a href="/about/" aria-label="Toggle navigation">About</a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href="/blog/" aria-label="Toggle navigation">Blog</a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href="#" aria-label="Toggle navigation">Helpline</a>
+                                    </li>
+                                    
+                                </ul>
+                            </div> <!-- navbar collapse -->
+                        </nav>
+                        <!-- End Navbar -->
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <!-- Start Nav Social -->
+                    <div class="nav-social">
+                        <h5 class="title">Follow Us:</h5>
+                        <ul>
+                            
+                            <li>
+                                <a href="#"><i class="lni lni-instagram-filled"></i></a>
+                            </li>
+                           
+                        </ul>
+                    </div>
+                    <!-- End Nav Social -->
+                </div>
+            </div>
+        </div>
+        <!-- End Header Bottom -->
+    </header>
+    <!-- End Header Area -->
+
+    <!-- Start Breadcrumbs -->
+    <div class="breadcrumbs">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="breadcrumbs-content">
+                       
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-12">
+                    <ul class="breadcrumb-nav">
+                        <li><a href="/"><i class="lni lni-home"></i> Home</a></li>
+                        <li><a href="/blog/">Blog</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumbs -->
+
+    <!-- Start Blog Singel Area -->
+    <section class="section blog-single">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1 col-md-12 col-12">
+                    <div class="single-inner">
+                        <div class="post-details">
+                            <div class="main-content-head">
+                                <div class="post-thumbnils">
+                                    <img src="{% static 'assets/images/bloginto.jpg' %}" alt="#">
+                                </div>
+                                <div class="meta-information">
+                                    <h2 class="post-title">
+                                        <a href="#">The Natural Path to Healthy Skin: Embracing Natural Skincare Products
+                                            .</a>
+                                    </h2>
+                                    <!-- End Meta Info -->
+                                    <ul class="meta-info">
+                                        <li>
+                                            <a href="javascript:void(0)"> <i class="lni lni-user"></i> 
+                                             Abikeola</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)"><i class="lni lni-calendar"></i> 10 Feb 2024
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)"><i class="lni lni-tag"></i> SkinCare</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)"><i class="lni lni-timer"></i> 5 min read</a>
+                                        </li>
+                                    </ul>
+                                    <!-- End Meta Info -->
+                                </div>
+                                <div class="detail-inner">
+                                    <h3>Introduction:</h3>
+                                    <p>
+                                        In a world where we are bombarded with countless skincare products laden with chemicals and artificial ingredients, natural skin care products have emerged as a breath of fresh air. With a growing understanding of the harmful effects of chemicals on our health and the environment, it is essential to explore sustainable and healthier alternatives. Let's delve into the reasons why natural skincare products are not just an ideal choice, but also a revelation in the world of skincare.
+                                        
+                                    </p>
+                                    <!-- post image -->
+                                    <ul class="list">
+                                        <li><i class="lni lni-checkmark-circle"></i> Nurturing the Skin, Nourishing the Body:
+                                            Unlike their chemical-laden counterparts, natural skincare products are derived from plant-based ingredients and are free from harmful additives like parabens and sulfates. These gentle formulations work in harmony with our skin, nurturing it from within and promoting long-lasting skin health.
+                                            
+                                        </li>
+                                        <li><i class="lni lni-checkmark-circle"></i> Chemical-Free Delight:
+                                            Conventional skincare products often contain harsh chemicals and synthetic fragrances that can irritate and disturb the natural balance of our skin. Many people suffer from adverse reactions such as redness, itching, or even allergic breakouts when using such products. Natural skincare products, on the other hand, harness the power of botanical extracts, essential oils, and other organic ingredients to provide effective results without any unwanted side effects.
+                                            </li>
+                                        <li><i class="lni lni-checkmark-circle"></i> The Power of Mother Nature:
+                                            Natural skincare products harness the numerous benefits of plants, which are known to possess healing and rejuvenating properties. Ingredients such as aloe vera, tea tree oil, jojoba oil, and shea butter are notorious for their soothing, antibacterial, and moisturizing properties. These natural wonders help combat various skin concerns, ranging from dryness and acne to wrinkles and sun damage.
+                                            .</li>
+                                        <li><i class="lni lni-checkmark-circle"></i> Environmental Consciousness:
+                                            By choosing natural skincare products, we embark on a journey towards a greener, more sustainable future. They are often produced through ethical processes that minimize environmental impact, such as using organic farming methods and biodegradable packaging. Additionally, opting for natural ingredients reduces the introduction of toxic chemicals into waterways, safeguarding aquatic ecosystems.
+                                            
+                                        </li>
+                                        <li><i class="lni lni-checkmark-circle"></i> Long-Term Skin Health:
+                                            While synthetics may promise quick fixes, natural skincare products focus on nourishing and improving the skin's health holistically. They strive to address the root causes of common skin issues rather than merely masking the symptoms. As a result, these products promote long-term skin health, leaving your skin radiant, balanced, and naturally beautiful.
+                                            </li>
+                                    </ul>
+                                    {% comment %} <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia. </p>
+                                    <!-- post quote --> {% endcomment %}
+                                    {% comment %} <blockquote>
+                                        <div class="icon">
+                                            <i class="lni lni-quotation"></i>
+                                        </div>
+                                        <h4>"Don't demand that things happen as you wish, but wish that they happen as they do happen, and you will go on well."</h4>
+                                        <span>- Epictetus, The Enchiridion</span>
+                                    </blockquote> {% endcomment %}
+                                    <h3>Conclusion</h3>
+                                    <p>In our quest for robust skincare routines, let's not forget the immense power and benefits of natural skincare products. By making the switch to natural options, we not only prioritize our own skin's well-being but also contribute towards a more sustainable and eco-friendly future. Embrace the wonders of Mother Nature and experience the transformative effects of natural skincare – your skin will thank you, and the environment will too.
+                                        That's why at Jaxluxe, your skin's health is our priority. 
+                                        Jaxkuxe
+                                                      ...caring with essence.
+                                    </p>
+                                    {% comment %} <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                        consequat. Duis aute irure dolor in reprehenderit. </p> {% endcomment %}
+                                    <div class="post-bottom-area">
+                                        <!-- Start Post Tag -->
+                                        <div class="post-tag">
+                                            <ul>
+                                                <li><a href="javascript:void(0)">#skincare,</a></li>
+                                                <li><a href="javascript:void(0)">#body</a></li>
+                                            </ul>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Comments -->
+                            <div class="post-comments">
+                                <h3 class="comment-title"><span>Post comments</span></h3>
+                                <ul class="comments-list">
+                                    <li>
+                                        
+                                        <div class="comment-desc">
+                                            <div class="desc-top">
+                                                <h6>Arista Williamson</h6>
+                                                <span class="date">19th May 2023</span>
+                                                 
+                                            </div>
+                                            <p>
+                                                Wow, what an eye-opening read! I've been struggling with sensitive skin for years, constantly battling reactions to harsh chemicals in mainstream skincare products. Discovering the benefits of natural skincare has been a game-changer for me. Since making the switch, my skin has never felt better! It's refreshing to know that I can pamper my skin without worrying about harmful additives. Thank you for shedding light on this natural skincare revolution.
+                                            </p>
+                                        </div>
+                                    </li>
+                                   
+                                    <li>
+                                        
+                                        <div class="comment-desc">
+                                            <div class="desc-top">
+                                                <h6>Alex Jemmi</h6>
+                                                <span class="date">12th May 2023</span>
+                                                 
+                                            </div>
+                                            <p>
+                                                As someone who's always been conscious of what I put on my skin, I can't emphasize enough how important it is to opt for natural skincare products. Not only are they better for our bodies, but they also align with my values of sustainability and eco-friendliness. It's reassuring to see more people embracing the power of Mother Nature in their skincare routines. Kudos to the author for advocating for healthier choices and promoting a more natural approach to skincare!
+                                            </p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="comment-form">
+                                <h3 class="comment-reply-title">Leave a comment</h3>
+                                <form action="#" method="POST">
+                                    <div class="row">
+                                       
+                                        <div class="col-lg-12 col-12">
+                                            <div class="form-box form-group">
+                                                <input type="text" name="email" class="form-control form-control-custom" placeholder="Your Name" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-12">
+                                            <div class="form-box form-group">
+                                                <input type="email" name="email" class="form-control form-control-custom" placeholder="Your Email" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-12">
+                                            <div class="form-box form-group">
+                                                <input type="text" name="name" class="form-control form-control-custom" placeholder="Phone Number" />
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-box form-group">
+                                                <textarea name="#" class="form-control form-control-custom" placeholder="Your Comments"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="button">
+                                                <button type="submit" class="btn">Post Comment</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Blog Singel Area -->
+ <!-- Start Footer Area -->
+ <footer class="footer">
+
+    <!-- End Footer Top -->
+    <!-- Start Footer Bottom -->
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="inner-content">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 col-12">
+                        <div class="payment-gateway">
+                            <span>Payment Methods:</span>
+                            <img src="{% static 'assets/images/product/payment.png' %}" alt="#">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-12">
+                        <div class="copyright">
+                            <p>Copyright © 2023 <a href="#" 
+                                    target="_blank">Jax Luxe</a></p>
+                                    <p> All Rights Reserved</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-12">
+                        <ul class="socila">
+                            <li>
+                                <span>Contact Us:</span>
+                            </li>
+                            {% comment %} <li><a href="#"><i class="lni lni-facebook-filled"></i></a></li>
+                            <li><a href="#"><i class="lni lni-twitter-original"></i></a></li> {% endcomment %}
+                            <li><a href="https://www.instagram.com/jaxluxeselfcare?igsh=MXVrdXBxZW54dWJyZg=="><i class="lni lni-instagram"></i></a></li>
+                           
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Footer Bottom -->
+</footer>
+<!--/ End Footer Area -->
+
+    <!-- ========================= JS here ========================= -->
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/tiny-slider.js' %}"></script>
+    <script src="{% static 'assets/js/glightbox.min.js' %}"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+</body>
+
+</html>

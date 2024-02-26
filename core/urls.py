@@ -18,4 +18,6 @@ urlpatterns = [
     path('add-to-cart/', views.add_to_cart, name='add_to_cart'),
     path('checkout/checkout-post/', views.checkout_post, name='checkout_post'),
     path('about/', views.aboutus, name="about"),
+    path('blog/', views.blog, name="blog"),
+    path('blogpost/', views.blog_view, name="blogpost"),
 ]

@@ -6,8 +6,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
-from .forms import OrderForm, CreateUserForm, CheckoutForm
+from .forms import OrderForm, SignUpForm, CheckoutForm
 from decimal import Decimal
 import json
 from .forms import CheckoutForm
@@ -45,6 +46,13 @@ def check(request):
     context = {}
     return render(request, 'core/check.html', context)
 
+def blog(request):
+    context = {}
+    return render(request, 'core/bloghome.html', context)
+def blog_view(request):
+    context = {}
+    return render(request, 'core/blogsingle.html', context)
+
 def checkout(request):
     context = {}
     return render(request, 'core/checkout.html', context)
@@ -53,9 +61,12 @@ def profile(request):
     context = {}
     return render(request, 'core/profile.html', context)
 
+
 def cart(request):
     if request.user.is_authenticated:
-        customer = request.user.Customer
+        customer = request.user.customer
+        print(customer)
+
         order_items = OrderItem.objects.filter(order__customer=customer)
 
 
@@ -67,35 +78,40 @@ def cart(request):
         return render(request, 'core/cart.html', context)
 
 
+@login_required
 @csrf_exempt
 def add_to_cart(request):
     if request.method == 'POST':
-        # Extract data from the AJAX request
+        user = request.user.customer
         quantity = int(request.POST.get('quantity', 1))
         product_name = request.POST.get('product_name', '')
         product_price = Decimal(request.POST.get('product_price', 0))
 
-        # Find the product based on its name (you might want to use a unique identifier)
+        # Find the product based on its name
         product = get_object_or_404(Product, name=product_name)
 
-        # Check if there is an existing order for the user; create one if not
-        order, created = Order.objects.get_or_create(customer=request.user.customer, is_ordered=False)
+        # Get the user's active order
+        order, created = Order.objects.get_or_create(customer=user, is_ordered=False)
 
         # Check if the product is already in the order; create one if not
         order_item, created = OrderItem.objects.get_or_create(order=order, product=product)
 
         # Update the quantity and total price
-        order_item.quantity = quantity
+        order_item.quantity += quantity
         order_item.update_total_price()
         order_item.save()
 
         # Update the total amount for the order
         order.update_total_amount()
 
-        # Redirect to the cart page
         return JsonResponse({'product_id': order_item.product.id})
 
+    # If the request method is not POST and the user is not authenticated, redirect to signup
+    if not request.user.is_authenticated:
+        return redirect('signup')  # Adjust 'signup' to the actual URL name of your signup page
+
     return JsonResponse({'error': 'Invalid request.'})
+
 
 from django.shortcuts import render
 
@@ -126,6 +142,12 @@ def categories2(request, tool):
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 
+from django.contrib.auth import logout as django_logout
+
+def logout(request):
+    django_logout(request)
+    return redirect('login')
+
 def my_login_view(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -144,15 +166,28 @@ def my_login_view(request):
     return render(request, 'core/login.html', context)
 
 def signup(request):
-    form = CreateUserForm()
-
     if request.method == 'POST':
-        form = CreateUserForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('login')
-    context = {'form': form}
-    return render(request, 'core/signup.html', context)
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        
+        # Check if the username is already taken
+        if User.objects.filter(username=username).exists():
+            # Handle the case where the username is already taken
+            # You can render the signup page again with an error message
+            return render(request, 'core/signup.html', {'error_message': 'Username is already taken'})
+
+        # Create the user
+        user = User.objects.create_user(username=username, email=email, password=password)
+        user.save()
+        
+        # Log in the user after successful signup
+        user = authenticate(username=username, password=password)
+        login(request, user)
+        
+        return redirect('login')  # Redirect to login page upon successful signup
+    
+    return render(request, 'core/signup.html')
 
 def orderapproved(request):
     context = {}
@@ -231,7 +266,7 @@ def checkout_post(request):
             'New Order',
             email_text,
             'temiloluwaogunniyi@gmail.com',
-            ['abikeomolademakinde@gmail.com'],
+            ['jaxluxeng@gmail.com'],
             fail_silently=False,
         )
 

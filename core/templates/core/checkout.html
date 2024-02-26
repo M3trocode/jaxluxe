@@ -251,8 +251,10 @@
 
                     <div class="row">
                       <div class="col-sm-6">
-                        <label>Postcode / ZIP *</label>
-                        <input type="text" class="form-control" id="zip" required />
+                        <label for="zip">Postcode / ZIP *</label>
+                        <input type="text" class="form-control" id="zip" pattern="[0-9]{5}" title="Please enter a 5-digit ZIP code" required />
+                        <span class="error" id="errorMessage"></span>
+                        <div class="invalid-feedback">Please provide a valid 5-digit ZIP code.</div>
                       </div>
                       <!-- End .col-sm-6 -->
 
@@ -452,6 +454,9 @@
     <script src="{% static 'cart/js/jquery.waypoints.min.js' %}"></script>
     <script src="{% static 'cart/js/superfish.min.js' %}"></script>
     <script src="{% static 'cart/js/owl.carousel.min.js' %}"></script>
+    <script async
+    src="https://maps.googleapis.com/maps/api/js?key=&loading=async&libraries=places&callback=initMap">
+</script>
     <!-- Main JS File -->
     <script src="{% static 'cart/js/main.js' %}"></script>
     <script>
@@ -631,5 +636,34 @@ function handleSsubmit() {
 
 }
 </script>
+<script>
+  let streetadd;
+
+  function initAutocomplete() {
+    streetadd = new google.maps.places.Autocomplete(
+      document.getElementById('streetadd'),
+      {
+        types: ['establishment'],
+        componentRestrictions: { 'country': ['NG'] },
+        fields: ['place_id', 'geometry', 'name']
+      }
+    );
+
+    streetadd.addListener('place_changed', onPlaceChanged);
+  }
+
+  function onPlaceChanged() {
+    var place = streetadd.getPlace();
+
+    if (!place.geometry) {
+      // User did not select a prediction; reset the input field
+      document.getElementById('streetadd').placeholder = 'House number and Street name';
+    } else {
+      // Display details about the valid place
+      document.getElementById('details').innerHTML = place.name;
+    }
+  }
+</script>
+
   </body>
 </html>

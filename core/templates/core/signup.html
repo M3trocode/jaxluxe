@@ -48,6 +48,10 @@
       .error {
         color: red;
       
+        .form-label {
+          width: 150px; /* Adjust the width as needed */
+          display: inline-block;
+      }
       }
     </style>
     <section class="vh-100">
@@ -57,38 +61,36 @@
             <img src="{% static 'assets/images/signup.png' %}" class="img-fluid" alt="Jax Luxe">
           </div>
           <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+            
             <form method="POST" action>
               {% csrf_token %} 
+
+                             <!-- Username -->
+
+                             <div class="form-outline mb-4">
+                              <input type="text" placeholder="" name="username" required="" pattern="^[a-zA-Z][a-zA-Z0-9]{5,}$" title="Username must start with a letter and have at least 6 characters (letters or numbers)" class="form-control form-control-lg" />
+                              <label class="form-label" for="form1Example13">Username</label>
+                            </div>
                 
-              
-              
-              <!-- Username -->
+                            <!-- Email input -->
+                            <div class="form-outline mb-4">
+                              <input type="email" placeholder="" name="email" required=""  class="form-control form-control-lg" />
+                              <label class="form-label" for="form1Example13">Email Address</label>
+                            </div>
+                
+                            <!-- Password input -->
+                            <div class="form-outline mb-4">
+                              <input type="password" placeholder="" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Password must contain at least one number, one lowercase and one uppercase letter, and at least 8 or more characters" required="" class="form-control form-control-lg" />
+                              <span class="error" id="errorMessage"></span>
+                              <label class="form-label" for="form1Example23">Password</label>
+                            </div>
 
-               <div class="form-outline mb-4">
-                {{form.username}}           
-                <label class="form-label" for="form1Example13">Username</label>
-              </div>
-  
-              <!-- Email input -->
-              <div class="form-outline mb-4">
-                {{form.email}}
-                                <label class="form-label" for="form1Example13">Email Address</label>
-              </div>
-  
-              <!-- Password input -->
-              <div class="form-outline mb-4">
-                {{form.password1}}
-                <span class="error" id="errorMessage"></span>
-                <label class="form-label" for="form1Example23">Password</label>
-              </div>
-
-              <!-- Confirm password -->
-              <!--add any id format you want, it's not added yet-->
-
-              <div class="form-outline mb-4">
-                {{form.password2}}
-                 <label class="form-label" for="form1Example13">Confirm Password</label>
-               </div>
+                            {% comment %} <!-- Password input -->
+                            <div class="form-outline mb-4">
+                              <input type="password" placeholder="" name="pass1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Password must contain at least one number, one lowercase and one uppercase letter, and at least 8 or more characters" required="" class="form-control form-control-lg" />
+                              <span class="error" id="errorMessage"></span>
+                              <label class="form-label" for="form1Example23">Confirm Password</label>
+                            </div> {% endcomment %}
   
               <div class="d-flex justify-content-around align-items-center mb-4">
                 <!-- Checkbox -->
@@ -140,7 +142,12 @@
     <script type="text/javascript" src="{% static 'assets/js/mdb.min.js' %}"></script>
     <!-- Custom scripts -->
  
-
+    <script>
+      window.onload = function() {
+          localStorage.clear();
+          console.log("LocalStorage cleared!");
+      };
+    </script>
 
   </body>
 
